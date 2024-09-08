@@ -1,5 +1,5 @@
 function App() {
-  return <div>React SNS</div>;
+  return <div>React SNS - test</div>;
 }
 
 export default App;
