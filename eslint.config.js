@@ -35,4 +35,9 @@ export default [
       ],
     },
   },
+  {
+    rules: {
+      'react/no-unknown-property': ['error', { ignore: ['css'] }],
+    },
+  },
 ];
