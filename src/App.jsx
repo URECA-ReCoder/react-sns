@@ -1,5 +1,12 @@
+import Chatting from './Component/Chatting';
+import ChatHeader from './Component/ChatHeader';
 function App() {
-  return <div>React SNS</div>;
+  return (
+    <div>
+      <ChatHeader />
+      <Chatting />
+    </div>
+  );
 }
 
 export default App;
