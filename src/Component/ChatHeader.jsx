@@ -1,25 +1,17 @@
-import React,{useState, useEffect} from 'react';
-import ChatData from '../assets/chatting.json';
-function ChatHeader() {
-    const [chat, setChat] = useState(null); 
+import React from 'react';
 
-    useEffect(()=>{
-        fetch(ChatData)
-        .then((Response)=> Response.json())
-        .then((jsonData) => {
-            const chatRoom = jsonData.chat
-    })
+function ChatHeader({ name, id }) {
   return (
     <div>
-      <span></span>
-      <span></span>
+      <span>이미지</span>
       <span>
-        <div>{chat.id == 1 && chat.name}</div>
-        <div>{chat.id == 1 && chat.name}</div>
+        <div>{name}</div>
+        <div>{id}</div>
       </span>
-      <span></span>
-      <span></span>
+      <span>비활성화</span>
+      <span>비디오</span>
     </div>
   );
 }
+
 export default ChatHeader;
