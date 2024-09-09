@@ -9,16 +9,15 @@ const wrapperStyle = css`
   width: 100vw;
   max-width: 430px;
   height: 100vh;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(247, 196, 218),
-    rgb(239, 239, 239)
-  );
+  background: linear-gradient(#f8ff2e, #ffffff 40%);
+  border-left: 1px solid #1d1d1d;
+  border-right: 1px solid #1d1d1d;
+  position: relative;
 `;
 
 function App() {
   return (
-    <div className="wrapper" css={wrapperStyle}>
+    <div css={wrapperStyle}>
       <GlobalStyle />
       <Header />
       <Content />
