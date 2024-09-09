@@ -1,5 +1,11 @@
+import ChatApp from './components/ChatApp'; 
+
 function App() {
-  return <div>React SNS</div>;
+  return (
+    <div>
+      <ChatApp /> 
+    </div>
+  );
 }
 
 export default App;
