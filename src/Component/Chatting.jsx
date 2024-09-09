@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ChatHeader from './ChatHeader';
-function Chatting({ chats }) {
+
+function Chatting({ chats, items }) {
   return (
     <div className="chat-container">
       {chats.map((chat) => (
@@ -11,6 +11,11 @@ function Chatting({ chats }) {
           <p style={{ whiteSpace: 'pre-line' }}>{chat.message}</p>
         </div>
       ))}
+      <div>
+        {items.map((item, index) => (
+          <div key={index}>{item}</div>
+        ))}
+      </div>
     </div>
   );
 }
