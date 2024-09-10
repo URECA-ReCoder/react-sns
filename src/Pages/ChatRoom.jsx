@@ -9,8 +9,7 @@ import { useChat } from '../hook/useChat';
 
 function ChatRoom() {
   const [chats] = useState(ChatData.chats); // JSON 데이터를 상태로 저장
-  const { inputValue, setInputValue, inputChatList, sendChat, items } =
-    useChat();
+  const { inputValue, setInputValue, inputChatList, sendChat } = useChat();
   // id가 1인 유저 정보를 헤더에 전달
   const headerChat = chats.find((chat) => chat.index === 1);
 

@@ -70,8 +70,11 @@ function Input({ value, onChange, sendChat }) {
         onChange={onChange}
         placeholder="메시지 보내기..."
       />
-      <SendIconWrapper>
-        <Icon src={send} onClick={sendChat} />
+      <SendIconWrapper onClick={sendChat}>
+        <Icon
+          src={send}
+          style={{ width: '20px', height: '20px' }}
+        />
       </SendIconWrapper>
     </InputContainer>
   );
