@@ -38,7 +38,7 @@ function ChatHeader({ name, id }) {
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <HeaderIcon src={back} />
+        <HeaderIcon src={back} onClick={back} />
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <img
             src={IU}

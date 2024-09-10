@@ -30,11 +30,11 @@ const InputStyled = styled.textarea`
   resize: none;
   border: none;
   background: none;
-  color: #c2c2c2;
+  color: #242424;
   font-weight: 400;
   letter-spacing: -0.4px;
   cursor: text;
-  font-size: 18px;
+  font-size: 16px;
   &:focus {
     outline: none;
   }
@@ -68,7 +68,7 @@ const SendIconWrapper = styled.div`
   align-items: center; /* 아이콘을 중앙에 정렬 */
 `;
 
-function Input({ value, onChange, sendChat }) {
+function Input({ value, onChange, sendChat, inputRef }) {
   return (
     <InputContainer>
       <FormStyled>
@@ -76,6 +76,7 @@ function Input({ value, onChange, sendChat }) {
           <Icon src={search} />
         </SearchButton>
         <InputStyled
+          ref={inputRef}
           value={value}
           onChange={onChange}
           placeholder="메시지 보내기..."
