@@ -22,14 +22,14 @@ const GlobalStyles = () => (
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100%;
       }
       body {
-        width: 100%;
         max-width: 430px;
-        justify-content: center;
-        align-items: center;
-        scrollbar-width: thin;
+        width: 100%;
         margin: 0;
+        height: 100%;
+        overflow: hidden;
         :focus {
           outline: none;
         }
@@ -41,16 +41,17 @@ const GlobalStyles = () => (
     `}
   />
 );
+
 const ContainerStyle = styled.div`
-  padding: 10px;
-  position: relative;
   display: flex;
-  width: 480px;
-  height: auto;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
   flex-direction: column;
   background-color: #ffffff;
   border: 1px solid #c9c9c9;
 `;
+
 function App() {
   return (
     <>

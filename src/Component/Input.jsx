@@ -3,17 +3,26 @@ import styled from '@emotion/styled';
 import send from '../assets/images/send.png';
 import search from '../assets/images/search.png';
 const InputContainer = styled.div`
+  position: fixed; /* 화면 하단에 고정 */
+  z-index: 2;
+  bottom: 0;
+  left: 50%; /* 가운데 정렬을 위한 시작점 */
+  transform: translateX(-50%); /* 가운데 정렬 */
   width: 100%;
-  background-color: #e3e3e35f;
+  max-width: 430px; /* 부모 요소의 max-width와 동일하게 설정 */
+  padding: 12px 8px 32px;
+`;
+const FormStyled = styled.form`
+  width: 100%;
+  border-radius: 24px;
+  padding: 6px;
+  background: #e3e3e35f;
   backdrop-filter: blur(8px);
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  border-radius: 24px;
-  padding: 6px;
 `;
-
-const InputStyled = styled.input`
+const InputStyled = styled.textarea`
   display: flex;
   flex: 1;
   height: 36px;
@@ -39,7 +48,7 @@ const Icon = styled.img`
   justify-content: center;
 `;
 
-const SearchIconWrapper = styled.button`
+const SearchButton = styled.button`
   width: 36px;
   height: 36px;
   border: none;
@@ -62,20 +71,19 @@ const SendIconWrapper = styled.div`
 function Input({ value, onChange, sendChat }) {
   return (
     <InputContainer>
-      <SearchIconWrapper>
-        <Icon src={search} />
-      </SearchIconWrapper>
-      <InputStyled
-        value={value}
-        onChange={onChange}
-        placeholder="메시지 보내기..."
-      />
-      <SendIconWrapper onClick={sendChat}>
-        <Icon
-          src={send}
-          style={{ width: '20px', height: '20px' }}
+      <FormStyled>
+        <SearchButton>
+          <Icon src={search} />
+        </SearchButton>
+        <InputStyled
+          value={value}
+          onChange={onChange}
+          placeholder="메시지 보내기..."
         />
-      </SendIconWrapper>
+        <SendIconWrapper onClick={sendChat}>
+          <Icon src={send} style={{ width: '20px', height: '20px' }} />
+        </SendIconWrapper>
+      </FormStyled>
     </InputContainer>
   );
 }

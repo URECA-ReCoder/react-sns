@@ -8,22 +8,46 @@ import Input from '../Component/Input';
 import { useChat } from '../hook/useChat';
 
 function ChatRoom() {
-  const [chats] = useState(ChatData.chats); // JSON 데이터를 상태로 저장
+  const [chats] = useState(ChatData.chats);
   const { inputValue, setInputValue, inputChatList, sendChat } = useChat();
-  // id가 1인 유저 정보를 헤더에 전달
   const headerChat = chats.find((chat) => chat.index === 1);
 
   return (
-    <div>
-      {/* 헤더에 name과 id 전달 */}
-      <ChatHeader name={headerChat.name} id={headerChat.id} />
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      `}
+    >
+      <ChatHeader
+        name={headerChat.name}
+        id={headerChat.id}
+        css={css`
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 10;
+          background-color: white;
+          padding: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        `}
+      />
 
-      {/* 전체 채팅 리스트를 채팅 컴포넌트에 전달 */}
       <Chatting chats={chats} items={inputChatList} />
+
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         sendChat={sendChat}
+        css={css`
+          position: fixed;
+          padding: 10px;
+          z-index: 10;
+          box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        `}
       />
     </div>
   );
