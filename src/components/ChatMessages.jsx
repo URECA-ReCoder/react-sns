@@ -6,6 +6,7 @@ const MessagesContainer = styled.div`
   padding: 10px;
   overflow-y: auto;
   background-color: #fff;
+  scroll-behavior: smooth;
 `;
 
 const Message = styled.div`
@@ -43,30 +44,33 @@ const MessageText = styled.div`
 `;
 
 const ChatMessages = ({ messages, users }) => {
-  const containerRef = useRef(null); // 메시지 리스트 컨테이너를 참조하기 위한 useRef 훅
+  const containerRef = useRef(null);// 메시지 리스트 컨테이너를 참조하기 위한 useRef 훅
 
-  useEffect(() => {
-    // 메시지가 업데이트될 때 스크롤을 컨테이너의 가장 아래로 이동
+  const scrollToBottom = () => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
+  };
+
+  useEffect(() => {
+    scrollToBottom(); // 메시지가 업데이트될 때마다 스크롤을 하단으로 이동
   }, [messages]);
 
   return (
     <MessagesContainer ref={containerRef}>
       {messages.map((message) => {
-        const user = users[message.userId] || {}; // 메시지에 해당하는 사용자 정보
+        const user = users[message.userId] || {};// 메시지에 해당하는 사용자 정보
         return (
           <Message key={message.id} style={{ justifyContent: user.id === 0 ? 'flex-end' : 'flex-start' }}>
-            {user.id !== 0 && <UserImage src={user.userImage} alt={user.userName} />} 
+            {user.id !== 0 && <UserImage src={user.userImage} alt={user.userName} />}
             <MessageContent>
               <MessageInfo>
-                <span>{user.userName}</span> 
-                <span>{message.time}</span> 
+                <span>{user.userName}</span>
+                <span>{message.time}</span>
               </MessageInfo>
-              <MessageText isUser={user.id === 0}>{message.text}</MessageText> 
+              <MessageText isUser={user.id === 0}>{message.text}</MessageText>
             </MessageContent>
-            {user.id === 0 && <UserImage src={user.userImage} alt={user.userName} />} 
+            {user.id === 0 && <UserImage src={user.userImage} alt={user.userName} />}
           </Message>
         );
       })}
