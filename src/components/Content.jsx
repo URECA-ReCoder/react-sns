@@ -1,16 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import PropTypes from 'prop-types';
 import userData from '../db/user.json';
-import messageData from '../db/data.json';
+import { useEffect, useRef } from 'react';
 
-function Content() {
+function Content({messages}) {
   const getUserInfo = (userId) => {
     return userData.user.find((user) => user.userId === userId);
   };
 
+  const contentRef = useRef(null);
+
+  // 메시지가 업데이트될 때 자동으로 하단으로 스크롤
+  useEffect(()=>{
+    contentRef.current.scrollIntoView({behavior:'smooth'})
+  }, [messages]); // messages가 업데이트될 때마다 실행
+
   return (
-    <div css={contentStyle}>
-      {messageData.message.map((msg) => {
+    <div css={contentStyle} >
+      {messages.map((msg) => {
         const user = getUserInfo(msg.userId); // 메시지 작성자
         const isUser = msg.userId === 0; // 사용자 유저아이디 : 0
 
@@ -24,6 +32,7 @@ function Content() {
               </div>
               <span css={timeStyle}>{msg.time}</span>
             </div>
+            <div ref={contentRef}></div>
           </div>
         );
       })}
@@ -98,3 +107,14 @@ const bubbleAndTimeStyle = (isUser) => css`
   gap: 2px;
   flex-direction: ${isUser ? 'row' : 'row-reverse'};
 `;
+
+Content.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      userId: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      time: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
