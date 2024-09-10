@@ -11,8 +11,8 @@ export function useChat() {
         value: ''
     });
     const [inputChatList, setInputChatList] = useState([]);
-    const back = () => {
-        alert("하이염");
+    const handleBack = () => {
+        alert("이것은 다음 과제🦖");
     };
     const sendChat = () => {
         if (inputValue.trim()) {
@@ -47,6 +47,6 @@ export function useChat() {
         setInputValue,
         sendChat,
         inputChatList,
-        back,
+        handleBack,
     };
 }

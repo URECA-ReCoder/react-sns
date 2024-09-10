@@ -34,11 +34,11 @@ const HeaderRight = styled.div`
   align-items: center;
   gap: 20px;
 `;
-function ChatHeader({ name, id }) {
+function ChatHeader({ name, id, handleBack }) {
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <HeaderIcon src={back} onClick={back} />
+        <HeaderIcon src={back} onClick={handleBack} />
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <img
             src={IU}
