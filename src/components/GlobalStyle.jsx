@@ -71,6 +71,7 @@ const GlobalStyle = () => (
         display: flex;
         justify-content: center;
         align-items: center;
+        box-sizing: border-box;
       }
     `}
   />
