@@ -1,37 +1,56 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import PropTypes from 'prop-types';
 import SubmitArrow from '../assets/submit.svg';
 import { useRef, useState } from 'react';
 
-function InputBox() {
+function InputBox({ addMessage }) {
   const [text, setText] = useState('');
   const inputRef = useRef(null);
 
+  // form 제출 시 새로고침 방지
+  const handleFormClick = (e) => {
+    e.preventDefault();
+  };
+
+  // 입력값이 변경될 때 상태 업데이트
   function handleInputChange(e) {
     setText(e.target.value);
-    // e.target에 있는 <input.../>으로부터 value 값을 가져옴
   }
 
-  function onClickButton(){
-     // 공백 입력 방지
-     if (text.trim() === '') return;
+  function onClickButton() {
+    // 공백 입력 방지
+    if (text.trim() === '') return;
+
+    addMessage(text);
 
     setText('');
     inputRef.current.focus(); // 버튼 누른 후에도 input box에 자동 포커싱
   }
 
+  function onCheckEnter(e){
+    if(e.key === 'Enter' && e.nativeEvent.isComposing == false){
+      e.preventDefault();
+      addMessage(text);
+
+      setText('');
+      inputRef.current.focus(); // 버튼 누른 후에도 input box에 자동 포커싱
+    }
+  }
+
   return (
     <div css={wrapperStyle}>
       <div css={inputBoxStyle}>
-        <form css={formStyle}>
+        <form onSubmit={handleFormClick} onKeyDown={onCheckEnter} css={formStyle}>
           <input
             type="text"
+            value={text}
             placeholder="메시지를 입력해주세요."
             css={inputStyle}
             onChange={handleInputChange}
             autoFocus
           />
-          <img src={SubmitArrow} css={submitBtnStyle} onClick={onClickButton}/>
+          <img src={SubmitArrow} css={submitBtnStyle} onClick={onClickButton} />
         </form>
       </div>
     </div>
@@ -51,7 +70,6 @@ const wrapperStyle = css`
   justify-content: center;
   align-items: center;
   background-color: #f8ff2e;
-  /* position: absolute; */
   bottom: 0;
   position: fixed;
 `;
@@ -91,3 +109,7 @@ const submitBtnStyle = css`
   object-fit: contain;
   cursor: pointer;
 `;
+
+InputBox.propTypes = {
+  addMessage: PropTypes.func.isRequired
+};
