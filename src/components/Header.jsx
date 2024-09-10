@@ -13,6 +13,13 @@ const Title = styled.h2`
   margin: 0;
   font-size: 18px;
   color: #333;
+  display: flex;
+  align-items: center;
+`;
+
+const Video = styled.span`
+  font-size: 20px; 
+  margin-left: 10px; 
 `;
 
 const BackButton = styled.button`
@@ -23,12 +30,14 @@ const BackButton = styled.button`
   color: #007bff;
 `;
 
-
 const Header = () => {
   return (
     <HeaderContainer>
       <BackButton>뒤로</BackButton>
-      <Title>🔔</Title>
+      <Title>
+        🔔
+        <Video>🎬</Video>
+      </Title>
     </HeaderContainer>
   );
 };
