@@ -1,5 +1,5 @@
+import  { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-
 const InputContainer = styled.div`
   display: flex;
   padding: 10px;
@@ -30,14 +30,27 @@ const SendButton = styled.button`
   }
 `;
 
-export default function ChatInput({ onSendMessage }) {
+
+const ChatInput = ({ onSendMessage }) => {
+  const inputRef = useRef(null);// 입력 필드를 참조하기 위한 useRef 훅
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const handleSendMessage = () => {
+    if (inputRef.current.value.trim()) {
+      onSendMessage(inputRef.current.value);// 상위 컴포넌트로 메시지 전송
+      inputRef.current.value = '';// 입력 필드를 초기화
+    }
   };
 
   return (
     <InputContainer>
-      <InputField type="text" placeholder="메시지 보내기..." />
+      <InputField ref={inputRef} type="text" placeholder="메시지 보내기..." />
       <SendButton onClick={handleSendMessage}>send 📩</SendButton>
     </InputContainer>
   );
-}
+};
+
+export default ChatInput;
