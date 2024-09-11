@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import back from '../assets/images/back.png';
-import IU from '../assets/images/IU.png';
-import bell from '../assets/images/bell.png';
-import video from '../assets/images/video.png';
+import back from '../../public/images/back.png';
+import IU from '../../public/images/IU.png';
+import bell from '../../public/images/bell.png';
+import video from '../../public/images/video.png';
 const HeaderContainer = styled.div`
   z-index: 2;
   top: 0;

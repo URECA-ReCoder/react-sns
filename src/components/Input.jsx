@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import send from '../assets/images/send.png';
-import search from '../assets/images/search.png';
+import send from '../../public/images/send.png';
+import search from '../../public/images/search.png';
 const InputContainer = styled.div`
   position: absolute; /* 화면 하단에 고정 */
   z-index: 2;
