@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import userData from '../db/user.json';
 import { useEffect, useRef } from 'react';
 
-function Content({messages}) {
+function Content({ messages }) {
   const getUserInfo = (userId) => {
     return userData.user.find((user) => user.userId === userId);
   };
@@ -12,12 +12,12 @@ function Content({messages}) {
   const contentRef = useRef(null);
 
   // 메시지가 업데이트될 때 자동으로 하단으로 스크롤
-  useEffect(()=>{
-    contentRef.current.scrollIntoView({behavior:'smooth'})
+  useEffect(() => {
+    contentRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]); // messages가 업데이트될 때마다 실행
 
   return (
-    <div css={contentStyle} >
+    <div css={contentStyle}>
       {messages.map((msg) => {
         const user = getUserInfo(msg.userId); // 메시지 작성자
         const isUser = msg.userId === 0; // 사용자 유저아이디 : 0
@@ -27,7 +27,7 @@ function Content({messages}) {
             <img src={user.profile} css={imgStyle} />
             <div css={bubbleAndTimeStyle(isUser)}>
               <div>
-                <div css={userNameStyle}>{user.userName}</div>
+                <div css={userNameStyle(isUser)}>{user.userName}</div>
                 <div css={bubbleStyle(isUser)}>{msg.text}</div>
               </div>
               <span css={timeStyle}>{msg.time}</span>
@@ -45,8 +45,12 @@ export default Content;
 // emotion/css
 
 const contentStyle = css`
+  width: 100%;
+  max-width: 430px;
   padding-top: 80px;
   padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
   overflow: scroll;
   scrollbar-width: none;
 `;
@@ -60,17 +64,18 @@ const imgStyle = css`
 
 const minjiMsgBoxStyle = css`
   display: flex;
-  margin: 20px;
+  margin: 20px 0;
+  padding: 0px 20px;
   gap: 12px;
   align-items: flex-end;
 `;
 
 const meMsgBoxStyle = css`
   display: flex;
-  margin: 20px;
+  margin: 20px 0;
+  padding: 0 20px;
   gap: 12px;
   align-items: flex-end;
-  text-align: right;
   flex-direction: row-reverse;
 `;
 
@@ -84,13 +89,15 @@ const bubbleStyle = (isUser) => css`
   font-style: normal;
   font-size: 14px;
   margin-top: 5px;
+  max-width: 240px;
 `;
 
-const userNameStyle = css`
+const userNameStyle = (isUser) => css`
   font-family: 'Pretendard-Medium';
   font-weight: 500;
   font-style: normal;
-  font-size: 15px;
+  font-size: 14px;
+  text-align: ${isUser ? 'left' : 'right'};
 `;
 
 const timeStyle = css`
@@ -114,7 +121,7 @@ Content.propTypes = {
       id: PropTypes.number.isRequired,
       userId: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
-      time: PropTypes.string.isRequired
+      time: PropTypes.string.isRequired,
     })
-  ).isRequired
+  ).isRequired,
 };
