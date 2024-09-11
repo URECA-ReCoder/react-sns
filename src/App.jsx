@@ -15,7 +15,10 @@ function App() {
       id: messages.length + 1,
       userId: 1,
       text: text,
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      time: new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
     }; // '오전 12:00' 포맷으로 출력
 
     setMessages((prevMessages) => [...prevMessages, newMessage]); // 기존 메시지에 새로운 메시지 추가
@@ -39,8 +42,7 @@ const wrapperStyle = css`
   width: 100%;
   max-width: 430px;
   height: 100%;
-  /* overflow-y: scroll; */
   background: linear-gradient(#f8ff2e, #ffffff 40%);
-  border-left: 1px solid #1d1d1d;
-  border-right: 1px solid #1d1d1d;
+  border: 1px solid #1d1d1d;
+  overflow: hidden;
 `;
