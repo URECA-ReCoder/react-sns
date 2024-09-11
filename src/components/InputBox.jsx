@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import SubmitArrow from '../assets/submit.svg';
+import SubmitArrow from '../../public/assets/submit.svg';
 import { useRef, useState } from 'react';
 
 function InputBox({ addMessage }) {
@@ -28,8 +28,8 @@ function InputBox({ addMessage }) {
     inputRef.current.focus(); // 버튼 누른 후에도 input box에 자동 포커싱
   }
 
-  function onCheckEnter(e){
-    if(e.key === 'Enter' && e.nativeEvent.isComposing == false){
+  function onCheckEnter(e) {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing == false) {
       e.preventDefault();
       addMessage(text);
 
@@ -41,7 +41,11 @@ function InputBox({ addMessage }) {
   return (
     <div css={wrapperStyle}>
       <div css={inputBoxStyle}>
-        <form onSubmit={handleFormClick} onKeyDown={onCheckEnter} css={formStyle}>
+        <form
+          onSubmit={handleFormClick}
+          onKeyDown={onCheckEnter}
+          css={formStyle}
+        >
           <input
             type="text"
             value={text}
@@ -111,5 +115,5 @@ const submitBtnStyle = css`
 `;
 
 InputBox.propTypes = {
-  addMessage: PropTypes.func.isRequired
+  addMessage: PropTypes.func.isRequired,
 };
