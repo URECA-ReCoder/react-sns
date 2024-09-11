@@ -7,11 +7,13 @@ import createMessageData from '@utils/createMessageData';
 function MessageInput() {
   const inputRef = useRef(null);
   const { handleNewChat } = useChat();
+
   const sendMessage = () => {
     handleNewChat(createMessageData(inputRef.current.value));
     inputRef.current.value = '';
     inputRef.current.focus();
   };
+  
   const handleKeyPress = (e) => {
     if (e.nativeEvent.isComposing) {
       return;
