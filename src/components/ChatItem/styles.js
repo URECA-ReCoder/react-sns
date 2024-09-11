@@ -46,3 +46,14 @@ export const ProfileImage = styled.img`
   border-radius: 50%;
   margin-right: 10px;
 `;
+
+export const ChatTimeMessageWrapper = styled.div`
+  display: flex;
+  align-items: end;
+`;
+
+export const ChatTime = styled.div`
+  font-size: 12px;
+  color: gray;
+  margin-right: 10px;
+`;

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
+import { INPUT_HEIGHT } from '@constants';
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 60px;
+  height: ${INPUT_HEIGHT}px;
   background-color: #f1f1f1;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  bottom: 0;
 `;
 
 export const FindIcon = styled.img`

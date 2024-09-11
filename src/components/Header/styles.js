@@ -1,14 +1,18 @@
+import { HEADER_HEIGHT } from '@constants/index';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 60px;
+  height: ${HEADER_HEIGHT}px;
   border-bottom: 1px solid #e5e5e5;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
 `;
 
 export const ActionIcon = styled.div`
