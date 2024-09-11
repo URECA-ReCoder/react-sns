@@ -9,7 +9,7 @@ function PartnerMessage({ message }) {
     <S.ChatItemWrapper userId={userInfo.userId} id={id}>
       <S.ProfileImage src={image} />
       <S.PartnerMessage>
-        {nickname}
+        <S.Nickname>{nickname}</S.Nickname>
         <S.ChatTimeMessageWrapper>
           <S.Chat userId={userInfo.userId} id={id}>
             {text}

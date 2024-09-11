@@ -7,7 +7,7 @@ function App() {
   const { chats, handleNewChat } = useChat();
 
   return (
-    <div>
+    <div style={{ boxSizing: 'border-box', margin: '0 15px' }}>
       <Header />
       <ChatList chats={chats} />
       <MessageInput handleNewChat={handleNewChat} />

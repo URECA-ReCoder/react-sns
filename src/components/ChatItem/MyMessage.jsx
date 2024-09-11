@@ -10,7 +10,7 @@ function MyMessage({ message }) {
     <S.ChatItemWrapper id={id} userId={userInfo.userId}>
       <S.ProfileImage src={image} />
       <S.MyMessage>
-        {nickname}
+        <S.Nickname>{nickname}</S.Nickname>
         <S.ChatTimeMessageWrapper>
           <S.ChatTime>{time}</S.ChatTime>
           <S.Chat userId={userInfo.userId} id={id}>

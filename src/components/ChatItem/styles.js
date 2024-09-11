@@ -44,7 +44,6 @@ export const ProfileImage = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 10px;
 `;
 
 export const ChatTimeMessageWrapper = styled.div`
@@ -55,5 +54,10 @@ export const ChatTimeMessageWrapper = styled.div`
 export const ChatTime = styled.div`
   font-size: 12px;
   color: gray;
-  margin-right: 10px;
+`;
+
+export const Nickname = styled.div`
+  font-size: 12px;
+  color: gray;
+  margin: 5px 10px;
 `;
