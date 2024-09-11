@@ -68,10 +68,8 @@ const GlobalStyle = () => (
       }
 
       body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
+        margin: 0 auto;
+        max-width: 430px;
       }
     `}
   />
