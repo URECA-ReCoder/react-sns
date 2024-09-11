@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import send from '../assets/images/send.png';
 import search from '../assets/images/search.png';
 const InputContainer = styled.div`
-  position: fixed; /* 화면 하단에 고정 */
+  position: absolute; /* 화면 하단에 고정 */
   z-index: 2;
   bottom: 0;
   left: 50%; /* 가운데 정렬을 위한 시작점 */

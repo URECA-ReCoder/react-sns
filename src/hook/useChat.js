@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useAlert } from "./useAlert";
 export function useChat() {
     const [inputValue, setInputValue] = useState('');
     const [createObject, setCreateObject] = useState({
@@ -11,9 +11,18 @@ export function useChat() {
         value: ''
     });
     const [inputChatList, setInputChatList] = useState([]);
+
+
+    //alert 훅 호출 Test
     const handleBack = () => {
         alert("이것은 다음 과제🦖");
     };
+    const { alertBack, alertVideo, alertSearch } = useAlert();
+
+
+
+
+
     const sendChat = () => {
         if (inputValue.trim()) {
             // 새로운 채팅 객체 생성
@@ -48,5 +57,8 @@ export function useChat() {
         sendChat,
         inputChatList,
         handleBack,
+        alertBack,
+        alertVideo,
+        alertSearch,
     };
 }

@@ -11,6 +11,7 @@ const ChattingContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   overflow-y: auto;
+  margin-bottom: 70px;
 `;
 
 const SpeechBubble1 = styled.div`

@@ -34,11 +34,11 @@ const HeaderRight = styled.div`
   align-items: center;
   gap: 20px;
 `;
-function ChatHeader({ name, id, handleBack }) {
+function ChatHeader({ name, id, alertBack, alertVideo }) {
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <HeaderIcon src={back} onClick={handleBack} />
+        <HeaderIcon src={back} onClick={alertBack} />
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <img
             src={IU}
@@ -74,7 +74,11 @@ function ChatHeader({ name, id, handleBack }) {
       </HeaderLeft>
       <HeaderRight>
         <HeaderIcon src={bell} />
-        <HeaderIcon src={video} style={{ width: '28px', height: '28px' }} />
+        <HeaderIcon
+          src={video}
+          style={{ width: '28px', height: '28px' }}
+          onClick={alertVideo}
+        />
       </HeaderRight>
     </HeaderContainer>
   );

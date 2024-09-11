@@ -11,10 +11,17 @@ import { useAlert } from '../hook/useAlert';
 
 function ChatRoom() {
   const [chats] = useState(ChatData.chats);
-  const { inputValue, setInputValue, inputChatList, sendChat, handleBack } =
-    useChat();
+  const {
+    inputValue,
+    setInputValue,
+    inputChatList,
+    sendChat,
+    handleBack,
+    alertBack,
+    alertVideo,
+  } = useChat();
   const { inputRef, chatContainerRef, scrollToBottom } = useFocus();
-  const { alertBack } = useAlert();
+  // const { alertBack } = useAlert();
   // const { handleBack } = useButtonevent();
 
   // 메시지가 입력될 때마다 스크롤을 하단으로 이동
@@ -34,16 +41,10 @@ function ChatRoom() {
       <ChatHeader
         name={chats[0].name}
         id={chats[0].id}
-        handleBack={handleBack}
+        alertBack={alertBack}
+        alertVideo={alertVideo}
         css={css`
           position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          z-index: 10;
-          background-color: white;
-          padding: 10px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         `}
       />
 
@@ -52,7 +53,6 @@ function ChatRoom() {
         css={css`
           flex: 1;
           overflow-y: auto;
-          margin-bottom: 80px;
         `}
       >
         <Chatting chats={chats} items={inputChatList} />
@@ -63,17 +63,6 @@ function ChatRoom() {
         onChange={(e) => setInputValue(e.target.value)}
         sendChat={sendChat}
         inputRef={inputRef} // 입력창에 대한 ref 전달
-        css={css`
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          max-width: 430px;
-          padding: 10px;
-          background-color: white;
-          z-index: 10;
-          box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-        `}
       />
     </div>
   );
