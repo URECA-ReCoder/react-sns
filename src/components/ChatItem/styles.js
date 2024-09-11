@@ -5,6 +5,7 @@ export const ChatItemWrapper = styled.div`
   width: 100%;
   flex-direction: ${(props) =>
     props.id === props.userId ? 'row-reverse' : 'row'};
+  margin: 10px 0;
 `;
 
 export const MyMessage = styled.div`

@@ -7,7 +7,7 @@ import useChat from '@hooks/useChat';
 import { useEffect } from 'react';
 
 function App() {
-  const { chats } = useChat();
+  const { chats, handleNewChat } = useChat();
   useEffect(() => {
     console.log(chats);
   }, [chats]);
@@ -32,7 +32,7 @@ function App() {
           />
         );
       })}
-      <MessageInput />
+      <MessageInput handleNewChat={handleNewChat} />
     </div>
   );
 }

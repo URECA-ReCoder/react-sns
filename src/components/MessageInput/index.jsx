@@ -1,19 +1,17 @@
 import { find, send } from '@assets/png';
 import * as S from './styles';
-import useChat from '@hooks/useChat';
 import { useRef } from 'react';
 import createMessageData from '@utils/createMessageData';
 
-function MessageInput() {
+function MessageInput({ handleNewChat }) {
   const inputRef = useRef(null);
-  const { handleNewChat } = useChat();
 
   const sendMessage = () => {
     handleNewChat(createMessageData(inputRef.current.value));
     inputRef.current.value = '';
     inputRef.current.focus();
   };
-  
+
   const handleKeyPress = (e) => {
     if (e.nativeEvent.isComposing) {
       return;
