@@ -1,13 +1,13 @@
 import * as S from './styles';
-import { userId } from '@constants/index';
+import { userInfo } from '@constants/userInfo';
 
 function PartnerMessage({ id, message, profileImage, nickname }) {
   return (
-    <S.ChatItemWrapper userId={userId} id={id}>
+    <S.ChatItemWrapper userId={userInfo.userId} id={id}>
       <S.ProfileImage src={profileImage} />
       <S.PartnerMessage>
         {nickname}
-        <S.Chat userId={userId} id={id}>
+        <S.Chat userId={userInfo.userId} id={id}>
           {message}
         </S.Chat>
       </S.PartnerMessage>
