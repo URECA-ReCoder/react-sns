@@ -1,52 +1,63 @@
 [
   {
     "id": 1,
-    "name": "솜사탕",
-    "message": "안녕하세요"
+    "nickname": "솜사탕",
+    "message": "안녕하세요",
+    "name": "뿌링클"
   },
+
   {
     "id": 0,
-    "name": "이효린",
-    "message": "네 안녕하세요"
+    "nickname": "횰인",
+    "message": "네 안녕하세요",
+    "name": "이효린"
   },
   {
     "id": 1,
-    "name": "솜사탕",
-    "message": "오늘 저녁 뭐 드셨어요 ?"
+    "nickname": "솜사탕",
+    "message": "오늘 저녁 뭐 드셨어요 ?",
+    "name": "뿌링클"
   },
   {
     "id": 0,
-    "name": "이효린",
-    "message": "네 저는 치킨을 먹었어요"
+    "nickname": "횰인",
+    "message": "네 저는 치킨을 먹었어요",
+    "name": "이효린"
   },
   {
     "id": 1,
-    "name": "솜사탕",
-    "message": "우와 무슨 치킨 드셨어요 ?"
+    "nickname": "솜사탕",
+    "message": "우와 무슨 치킨 드셨어요 ?",
+    "name": "뿌링클"
   },
   {
     "id": 0,
-    "name": "이효린",
-    "message": "사실 뻥이예요"
+    "nickname": "횰인",
+    "message": "사실 뻥이예요",
+    "name": "이효린"
   },
   {
     "id": 1,
-    "name": "솜사탕",
-    "message": "네?"
+    "nickname": "솜사탕",
+    "message": "네?",
+    "name": "뿌링클"
   },
   {
     "id": 0,
-    "name": "이효린",
-    "message": "뻥이라구요"
+    "nickname": "횰인",
+    "message": "뻥이라구요",
+    "name": "이효린"
   },
   {
     "id": 1,
-    "name": "솜사탕",
-    "message": "이상한 사람이네요"
+    "nickname": "솜사탕",
+    "message": "이상한 사람이네요",
+    "name": "뿌링클"
   },
   {
     "id": 0,
-    "name": "이효린",
-    "message": "ㅋㅋㅋ"
+    "nickname": "횰인",
+    "message": "ㅋㅋㅋ",
+    "name": "이효린"
   }
 ]
