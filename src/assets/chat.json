@@ -3,61 +3,71 @@
     "id": 1,
     "nickname": "솜사탕",
     "message": "안녕하세요",
-    "name": "뿌링클"
+    "name": "뿌링클",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
   },
 
   {
     "id": 0,
     "nickname": "횰인",
     "message": "네 안녕하세요",
-    "name": "이효린"
+    "name": "이효린",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/18/avatar-1577909_960_720.png"
   },
   {
     "id": 1,
     "nickname": "솜사탕",
     "message": "오늘 저녁 뭐 드셨어요 ?",
-    "name": "뿌링클"
+    "name": "뿌링클",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
   },
   {
     "id": 0,
     "nickname": "횰인",
     "message": "네 저는 치킨을 먹었어요",
-    "name": "이효린"
+    "name": "이효린",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/18/avatar-1577909_960_720.png"
   },
   {
     "id": 1,
     "nickname": "솜사탕",
     "message": "우와 무슨 치킨 드셨어요 ?",
-    "name": "뿌링클"
+    "name": "뿌링클",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
   },
   {
     "id": 0,
     "nickname": "횰인",
     "message": "사실 뻥이예요",
-    "name": "이효린"
+    "name": "이효린",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/18/avatar-1577909_960_720.png"
   },
   {
     "id": 1,
     "nickname": "솜사탕",
     "message": "네?",
-    "name": "뿌링클"
+    "name": "뿌링클",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
   },
   {
     "id": 0,
     "nickname": "횰인",
     "message": "뻥이라구요",
-    "name": "이효린"
+    "name": "이효린",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/18/avatar-1577909_960_720.png"
   },
   {
     "id": 1,
     "nickname": "솜사탕",
     "message": "이상한 사람이네요",
-    "name": "뿌링클"
+    "name": "뿌링클",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
   },
   {
     "id": 0,
     "nickname": "횰인",
     "message": "ㅋㅋㅋ",
-    "name": "이효린"
+    "name": "이효린",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/18/avatar-1577909_960_720.png"
   }
 ]
