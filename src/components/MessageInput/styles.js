@@ -29,6 +29,9 @@ export const StyledInput = styled.input`
   outline: none;
   padding-left: 20px;
   font-size: 16px;
+  &:hover {
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  }
 `;
 
 export const SendIcon = styled.img`

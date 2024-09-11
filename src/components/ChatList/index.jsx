@@ -1,17 +1,18 @@
 import MyMessage from '@components/ChatItem/MyMessage';
 import PartnerMessage from '@components/ChatItem/PartnerMessage';
-import { HEADER_HEIGHT, INPUT_HEIGHT } from '@constants/index';
 import { userInfo } from '@constants/userInfo';
+import { findPartnerInfo } from '@utils/findPartnerInfo';
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import * as S from './styles';
 
-function ChatList({ chats }) {
+function ChatList({ chats, alarmOff }) {
   const chatListRef = useRef(null);
+  const { partnerName } = findPartnerInfo(userInfo.userId);
   useEffect(() => {
     chatListRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [chats]);
+  }, [chats, alarmOff]);
   return (
-    <ChatListWrapper>
+    <S.ChatListWrapper>
       {chats.map((item, index) => {
         return item.id === userInfo.userId ? (
           <MyMessage key={index} message={item} />
@@ -19,17 +20,15 @@ function ChatList({ chats }) {
           <PartnerMessage key={index} message={item} />
         );
       })}
+      {alarmOff && (
+        <S.DoNotDisturb>
+          {partnerName}님이 방해금지모드를 설정하여 <br />
+          메시지를 전송할 수 없습니다.
+        </S.DoNotDisturb>
+      )}
       <div ref={chatListRef}></div>
-    </ChatListWrapper>
+    </S.ChatListWrapper>
   );
 }
 
-const ChatListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  height: calc(100vh - ${HEADER_HEIGHT + INPUT_HEIGHT}px);
-  box-sizing: border-box;
-  margin-top: ${HEADER_HEIGHT}px;
-`;
 export default ChatList;

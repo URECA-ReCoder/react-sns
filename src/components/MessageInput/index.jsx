@@ -3,7 +3,7 @@ import * as S from './styles';
 import { useRef } from 'react';
 import createMessageData from '@utils/createMessageData';
 
-function MessageInput({ handleNewChat }) {
+function MessageInput({ alarmOff, handleNewChat }) {
   const inputRef = useRef(null);
 
   const sendMessage = () => {
@@ -28,10 +28,13 @@ function MessageInput({ handleNewChat }) {
     <S.Wrapper>
       <S.FindIcon src={find} />
       <S.StyledInput
+        disabled={alarmOff}
         onKeyDown={handleKeyPress}
         ref={inputRef}
         autoFocus
-        placeholder="메시지 보내기 ..."
+        placeholder={
+          alarmOff ? '메시지 전송이 불가합니다' : '메시지 보내기 ...'
+        }
       />
       <S.SendIcon src={send} onClick={sendMessage} />
     </S.Wrapper>
