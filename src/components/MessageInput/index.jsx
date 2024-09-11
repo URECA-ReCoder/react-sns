@@ -7,6 +7,9 @@ function MessageInput({ handleNewChat }) {
   const inputRef = useRef(null);
 
   const sendMessage = () => {
+    if (!inputRef.current.value) {
+      return;
+    }
     handleNewChat(createMessageData(inputRef.current.value));
     inputRef.current.value = '';
     inputRef.current.focus();
