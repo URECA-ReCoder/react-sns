@@ -7,12 +7,14 @@ import Chatting from '../Component/Chatting';
 import Input from '../Component/Input';
 import { useChat } from '../hook/useChat';
 import { useFocus } from '../hook/useFocus';
-// import { useButtonevent } from '../hook/useButtonevent';
+import { useAlert } from '../hook/useAlert';
+
 function ChatRoom() {
   const [chats] = useState(ChatData.chats);
   const { inputValue, setInputValue, inputChatList, sendChat, handleBack } =
     useChat();
   const { inputRef, chatContainerRef, scrollToBottom } = useFocus();
+  const { alertBack } = useAlert();
   // const { handleBack } = useButtonevent();
 
   // 메시지가 입력될 때마다 스크롤을 하단으로 이동
