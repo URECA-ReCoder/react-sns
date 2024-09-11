@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 import ChatData from '../assets/chatting.json';
-import ChatHeader from '../Component/ChatHeader';
-import Chatting from '../Component/Chatting';
-import Input from '../Component/Input';
+import ChatHeader from '../components/ChatHeader';
+import Chatting from '../components/Chatting';
+import Input from '../components/Input';
 import { useChat } from '../hook/useChat';
 import { useFocus } from '../hook/useFocus';
 import { useAlert } from '../hook/useAlert';
