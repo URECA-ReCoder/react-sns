@@ -1,9 +1,11 @@
+import { userInfo } from '@constants/userInfo';
+import { findPartnerInfo } from '../../utils/findPartnerInfo';
 import * as S from './styles';
-import { findPartnerInfo } from './utils/findPartnerInfo';
 
 function Title() {
-  const { partnerName, partnerProfileImage, partnerNickname } =
-    findPartnerInfo();
+  const { partnerName, partnerProfileImage, partnerNickname } = findPartnerInfo(
+    userInfo.userId
+  );
   return (
     <S.ChatPartner>
       <S.ChatPartnerImage src={partnerProfileImage} />
