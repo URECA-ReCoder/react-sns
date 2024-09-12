@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Header from './Header';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
-import chatData from '../public/ChatData.json'; 
-import userData from '../public/UserData.json'; 
+import chatData from '../assets/data/ChatData.json'
+import userData from '../assets/data/UserData.json'; 
 
 const ChatContainer = styled.div`
   display: flex;
