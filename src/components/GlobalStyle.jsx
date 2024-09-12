@@ -70,6 +70,7 @@ const GlobalStyle = () => (
       body {
         margin: 0 auto;
         max-width: 430px;
+        overscroll-behavior: none;
       }
     `}
   />
