@@ -64,10 +64,10 @@ const imgStyle = css`
 
 const minjiMsgBoxStyle = css`
   display: flex;
+  align-items: flex-end;
   margin: 20px 0;
   padding: 0px 20px;
   gap: 12px;
-  align-items: flex-end;
 `;
 
 const meMsgBoxStyle = css`
