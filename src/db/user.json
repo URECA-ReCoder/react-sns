@@ -3,12 +3,12 @@
     {
       "userId": 0,
       "userName": "민지",
-      "profile": "../../public/assets/minji.jpg"
+      "profile": "/assets/minji.jpg"
     },
     {
       "userId": 1,
       "userName": "윤정",
-      "profile": "../../public/assets/metamong.jpg"
+      "profile": "/assets/metamong.jpg"
     }
   ]
 }

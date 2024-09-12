@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import Arrow from '../../public/assets/left.svg';
-import Bell from '../../public/assets/bell-ring.svg';
-import Camcoder from '../../public/assets/video-camera.svg';
-import Profile from '../../public/assets/minji.jpg';
+import Arrow from '/public/assets/left.svg';
+import Bell from '/public/assets/bell-ring.svg';
+import Camcoder from '/assets/video-camera.svg';
+import Profile from '/assets/minji.jpg';
 
 function Header() {
   return (

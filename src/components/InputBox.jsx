@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import SubmitArrow from '../../public/assets/submit.svg';
+import SubmitArrow from '/assets/submit.svg';
 import { useRef, useState } from 'react';
 
 function InputBox({ addMessage }) {
