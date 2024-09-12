@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Header from './components/Header';
-import Content from './components/content';
+import Content from './components/Content';
 import InputBox from './components/InputBox';
 import GlobalStyle from './components/GlobalStyle';
 import { useState } from 'react';
-import messageData from '../src/db/data.json';
+import messageData from './db/data.json';
 
 function App() {
   const [messages, setMessages] = useState(messageData.message);
