@@ -1,12 +1,13 @@
-# ReCoder Week3: React-SNS
+# ReCoder Week4: React-SNS
 
 # 서론
 
 안녕하세요 🙌🏻 다들 한 주 동안 미션 진행하시느라 고생하셨습니다!
 
-이번 미션은 새로운 주제로 돌아왔습니다! 바로 SNS 서비스를 구현해 보는 것인데요. 이번주에는 채팅방 기능을 구현하는 것부터 시작해서 점차적으로 기능을 확장해 나가 보려고 합니다. 따라서 이번 미션에서 중요한 점 중 하나는 **확장성**을 고려하여 개발해 보는 것입니다! 새로운 기능이 추가되고 기존 기능이 변경되어도 유연하게 대처할 수 있도록 코드를 작성해 보세요 🙂
+이번주에는 JavaScript로 구현된 프로젝트에 TypeScript를 적용해 보는 미션을 진행합니다.
+TypeScript를 처음 접할 때에는 다소 낯설거나 복잡하게 느껴질 수 있지만, 익숙해지면 더욱 견고하고 명확한 코드를 작성할 수 있게 됩니다. 이번 미션을 통해 TypeScript의 이점을 직접 체감하실 수 있을 거예요 🙂
 
-또한 투두리스트 만들기로 리액트를 가볍게 맛보았다면 이번에는 비슷한 기능이지만 한번 더 React의 기초적인 사용법에 익숙해지고, 다양한 hook을 활용해 수 있는 미션이 되었으면 좋겠습니다!
+또한 저번 미션에서 받은 코드 리뷰를 바탕으로 리팩토링을 진행해 보고, 좋은 프로젝트 구조와 코드에 대해 고민해 보셨으면 좋겠습니다!
 
 혹시 어려움이 있거나 도움이 필요하다면 언제든지 저를 불러 주세요 🙋‍♀️🏃🏻‍♀️
 
@@ -16,36 +17,28 @@
 
 ## 🎯 미션 목표
 
-- `useEffect`와 `useRef`의 사용법을 이해합니다.
-- React의 다양한 hook에 대해 알아 봅니다.
-- 코드의 확장성을 염두에 두고 개발을 진행합니다.
+- TypeScript를 이용한 개발 방식에 익숙해집니다.
+- 코드 리팩토링을 통해 더 나은 코드와 구조를 고민해 봅니다.
 
 ## ✅ 필수 요건
 
-- [결과 화면](https://corinth-sns.vercel.app/)의 기능을 구현합니다.
-- 대화 내용을 `json` 파일에 저장하고, 이를 불러와 사용합니다.
-- 말풍선과 함께 사용자 사진, 이름, 보낸 시간을 표시합니다.
-- `useRef` 와 `useEffect` 를 이용하여 입력창에 자동으로 focus 되도록 합니다.
-- 새로운 메시지를 입력했을 때 스크롤을 채팅방 하단으로 이동시킵니다.
+- 저번주에 미처 구현하지 못한 기능이 있다면 이번주에 다시 시도해 봅시다! ([결과 화면](https://corinth-sns.vercel.app/))
+- `any` 타입의 사용을 최대한 지양하고, 가능한 구체적인 타입을 명시해 주세요.
+- 저번 미션에서 받은 코드 리뷰를 토대로 리팩토링을 진행해 주세요.
 
 ## 🏷️ 선택 사항
 
-- [React의 다양한 hook](https://ko.react.dev/reference/react/hooks)을 사용해 봅니다.
-- ‘방해 금지 모드’가 활성화되었을 때 채팅방 하단에 알림 메시지를 띄우고 메시지 입력을 방지합니다.
-- 디자인은 마음대로 변경하셔도 됩니다!
 - 추가하고 싶은 기능이 있다면 마음껏 추가해 주세요!
 
 ## 📖 생각해 볼 질문들
 
-- `useEffect` 와 `useRef`는 어떠한 상황에서 사용하나요?
-- `useState` `useEffect` `useRef` 이외에 어떤 hook들이 존재하나요?
-- Custom hook은 언제 사용할까요?
+- TypeScript를 사용했을 때의 이점은 무엇일까요?
+- 리팩토링을 진행하면서 어떤 부분을 중점적으로 고려했나요?
 
 <br/>
 
 # 참고 자료
 
-- [React 공식 문서 - 내장된 React Hook](https://ko.react.dev/reference/react/hooks)
-- [React 공식 문서 - useEffect](https://ko.react.dev/reference/react/useEffect)
-- [React 공식 문서 - useRef](https://ko.react.dev/reference/react/useRef)
-- [리액트의 Hooks 완벽 정복하기](https://velog.io/@velopert/react-hooks)
+- [한눈에 보는 타입스크립트](https://www.heropy.dev/p/WhqSC8)
+- [JS에 TS 적용하기](https://joshua1988.github.io/ts/etc/convert-js-to-ts.html#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%BD%94%EB%93%9C%EC%97%90-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A5%BC-%EC%A0%81%EC%9A%A9%ED%95%A0-%EB%95%8C-%EC%A3%BC%EC%9D%98%ED%95%B4%EC%95%BC-%ED%95%A0-%EC%A0%90s)
+- [타입스크립트 핸드북](https://joshua1988.github.io/ts/)
