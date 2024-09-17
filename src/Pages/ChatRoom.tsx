@@ -7,7 +7,7 @@ import Chatting from '../components/Chatting';
 import Input from '../components/Input';
 import { useChat } from '../hook/useChat';
 import { useFocus } from '../hook/useFocus';
-import { useAlert } from '../hook/useAlert';
+// import { useAlert } from '../hook/useAlert';
 
 function ChatRoom() {
   const [chats] = useState(ChatData.chats);
@@ -60,7 +60,7 @@ function ChatRoom() {
 
       <Input
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e: any) => setInputValue(e.target.value)}
         sendChat={sendChat}
         inputRef={inputRef} // 입력창에 대한 ref 전달
       />

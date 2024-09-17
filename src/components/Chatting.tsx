@@ -73,7 +73,7 @@ function Chatting({ chats, items }) {
   return (
     <ChattingContainer>
       {/* 기존 JSON 데이터로 채팅 출력 */}
-      {chats.map((chat) => {
+      {chats.map((chat: any) => {
         if (chat.index === 1) {
           return (
             <span

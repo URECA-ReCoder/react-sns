@@ -4,8 +4,6 @@ import back from '../../public/images/back.png';
 import IU from '../../public/images/IU.png';
 import bell from '../../public/images/bell.png';
 import video from '../../public/images/video.png';
-const Url = `${process.env.PUBLIC_URL}/images/`;
-
 const HeaderContainer = styled.div`
   z-index: 2;
   top: 0;
@@ -51,6 +49,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   id,
   alertBack,
   alertVideo,
+  // handleBack,
 }) => {
   return (
     <HeaderContainer>
