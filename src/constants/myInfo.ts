@@ -1,4 +1,4 @@
-export const userInfo = {
+export const myInfo: UserInfo = {
   userId: 0,
   nickname: '횰인',
   name: '이효린',

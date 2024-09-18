@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
+    "strict": true,
     "allowJs": true,
     "target": "ES6",
     "outDir": "./dist",
     "moduleResolution": "Node",
     "module": "ESNext",
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
       "@*": ["*"]
     }
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "image.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

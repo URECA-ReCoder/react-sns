@@ -1,21 +1,27 @@
 import { find, send } from '@assets/png';
-import * as S from './styles';
+import * as S from './MessageInput.styles';
 import { useRef } from 'react';
 import createMessageData from '@utils/createMessageData';
 
-function MessageInput({ alarmOff, handleNewChat }) {
-  const inputRef = useRef(null);
+interface MessageInputProps {
+  alarmOff: boolean;
+  handleNewChat: (chat: Chat) => void;
+}
+
+function MessageInput({ alarmOff, handleNewChat }: MessageInputProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const sendMessage = () => {
-    if (!inputRef.current.value) {
+    if (!inputRef.current?.value || inputRef.current === null) {
       return;
     }
-    handleNewChat(createMessageData(inputRef.current.value));
+    const newChat = createMessageData(inputRef.current.value);
+    handleNewChat(newChat);
     inputRef.current.value = '';
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.nativeEvent.isComposing) {
       return;
     }

@@ -1,18 +1,22 @@
-import { userInfo } from '@constants/userInfo';
-import { findPartnerInfo } from '../../utils/findPartnerInfo';
-import * as S from './styles';
+import { myInfo } from '@constants/myInfo';
+import { findPartnerList } from '../../utils/findPartnerInfo';
+import * as S from './Header.styles';
 
 function Title() {
-  const { partnerName, partnerProfileImage, partnerNickname } = findPartnerInfo(
-    userInfo.userId
-  );
+  const partnerList = findPartnerList(myInfo.userId);
   return (
     <S.ChatPartner>
-      <S.ChatPartnerImage src={partnerProfileImage} />
-      <S.TitleNameWrapper>
-        <S.ChatPartnerName> {partnerName}</S.ChatPartnerName>
-        <S.ChatPartnerNickname>{partnerNickname}</S.ChatPartnerNickname>
-      </S.TitleNameWrapper>
+      {partnerList.map((partner) => (
+        <>
+          <S.ChatPartnerImage src={partner.partnerProfileImage} />
+          <S.TitleNameWrapper>
+            <S.ChatPartnerName> {partner.partnerName}</S.ChatPartnerName>
+            <S.ChatPartnerNickname>
+              {partner.partnerNickname}
+            </S.ChatPartnerNickname>
+          </S.TitleNameWrapper>
+        </>
+      ))}
     </S.ChatPartner>
   );
 }

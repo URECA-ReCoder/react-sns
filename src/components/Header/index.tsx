@@ -1,7 +1,13 @@
 import { bell, bellOff, camera, chevronLeft } from '@assets/png';
-import * as S from './styles';
+import * as S from './Header.styles';
 import Title from './Title';
-function Header({ alarmOff, setAlarmOff }) {
+
+interface HeaderProps {
+  alarmOff: boolean;
+  setAlarmOff: (alarmOff: boolean) => void;
+}
+
+function Header({ alarmOff, setAlarmOff }: HeaderProps) {
   return (
     <S.Wrapper>
       <S.ActionIcon>

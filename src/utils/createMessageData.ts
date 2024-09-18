@@ -1,11 +1,9 @@
-import { userInfo } from '@constants/userInfo';
+import { myInfo } from '@constants/myInfo';
 
-function createMessageData(message) {
-  const { userId, nickname, image } = userInfo;
+function createMessageData(message: string): Chat {
+  const { userId } = myInfo;
   return {
-    id: userId,
-    nickname,
-    image,
+    userId,
     message,
     timestamp: new Date().toISOString(),
   };

@@ -1,20 +1,28 @@
 import MyMessage from '@components/ChatItem/MyMessage';
 import PartnerMessage from '@components/ChatItem/PartnerMessage';
-import { userInfo } from '@constants/userInfo';
-import { findPartnerInfo } from '@utils/findPartnerInfo';
-import { useEffect, useRef } from 'react';
-import * as S from './styles';
+import userInfo from '@assets/userInfo.json';
+import { findPartnerList } from '@utils/findPartnerInfo';
+import { Ref, RefObject, useEffect, useRef } from 'react';
+import * as S from './ChatList.styles';
+import { myInfo } from '@constants/myInfo';
 
-function ChatList({ chats, alarmOff }) {
-  const chatListRef = useRef(null);
-  const { partnerName } = findPartnerInfo(userInfo.userId);
+interface ChatListProps {
+  chats: ChatArray;
+  alarmOff: boolean;
+}
+
+function ChatList({ chats, alarmOff }: ChatListProps) {
+  const chatListRef = useRef<HTMLDivElement>(null);
+
+  const partnerList = findPartnerList(myInfo.userId);
   useEffect(() => {
-    chatListRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (chatListRef.current)
+      chatListRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [chats, alarmOff]);
   return (
     <S.ChatListWrapper>
       {chats.map((item, index) => {
-        return item.id === userInfo.userId ? (
+        return item.userId === myInfo.userId ? (
           <MyMessage key={index} message={item} />
         ) : (
           <PartnerMessage key={index} message={item} />
@@ -22,7 +30,8 @@ function ChatList({ chats, alarmOff }) {
       })}
       {alarmOff && (
         <S.DoNotDisturb>
-          {partnerName}님이 방해금지모드를 설정하여 <br />
+          {partnerList.map((partner) => partner.partnerName)} 님이
+          방해금지모드를 설정하여 <br />
           메시지를 전송할 수 없습니다.
         </S.DoNotDisturb>
       )}

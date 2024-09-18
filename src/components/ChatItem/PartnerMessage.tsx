@@ -1,17 +1,21 @@
-import parseTimeStamp from '@utils/parseTimeStamp';
-import * as S from './styles';
-import { userInfo } from '@constants/userInfo';
+import * as S from './ChatItem.styles';
+import { myInfo } from '@constants/myInfo';
+import { partnerMessageInfo } from '@utils/findPartnerInfo';
+import moment from 'moment';
 
-function PartnerMessage({ message }) {
-  const time = parseTimeStamp(message.timestamp);
-  const { id, nickname, message: text, image } = message;
+function PartnerMessage({ message }: { message: Chat }) {
+  const time = moment(message.timestamp).format('a hh:mm');
+
+  const { userId: messgaeUserId, message: text } = message;
+  const { userId: myId } = myInfo;
+  const { userId, image, nickname } = partnerMessageInfo(messgaeUserId);
   return (
-    <S.ChatItemWrapper userId={userInfo.userId} id={id}>
+    <S.ChatItemWrapper myId={myId} userId={userId}>
       <S.ProfileImage src={image} />
       <S.PartnerMessage>
         <S.Nickname>{nickname}</S.Nickname>
         <S.ChatTimeMessageWrapper>
-          <S.Chat userId={userInfo.userId} id={id}>
+          <S.Chat myId={myId} userId={userId}>
             {text}
           </S.Chat>
           <S.ChatTime>{time}</S.ChatTime>

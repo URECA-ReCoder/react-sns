@@ -1,8 +1,19 @@
-import chat from '@assets/chat.json';
+import userInfo from '@assets/userInfo.json';
+export function findPartnerList(myId: number) {
+  const partners = userInfo.filter((info: UserInfo) => info.userId !== myId);
 
-export function findPartnerInfo({ userId }) {
-  const partnerName = chat.find((chat) => chat.id !== userId).name;
-  const partnerProfileImage = chat.find((chat) => chat.id !== userId).image;
-  const partnerNickname = chat.find((chat) => chat.id !== userId).nickname;
-  return { partnerName, partnerProfileImage, partnerNickname };
+  const partnerInfoList = partners.map((partner) => ({
+    partnerName: partner.name,
+    partnerProfileImage: partner.image,
+    partnerNickname: partner.nickname,
+  }));
+  return partnerInfoList;
+}
+
+export function partnerMessageInfo(userId: number) {
+  const partnerInfo = userInfo.find(
+    (info: UserInfo) => info.userId === userId
+  ) as UserInfo;
+
+  return partnerInfo;
 }
