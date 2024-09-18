@@ -1,8 +1,7 @@
 import MyMessage from '@components/ChatItem/MyMessage';
 import PartnerMessage from '@components/ChatItem/PartnerMessage';
-import userInfo from '@assets/userInfo.json';
 import { findPartnerList } from '@utils/findPartnerInfo';
-import { Ref, RefObject, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as S from './ChatList.styles';
 import { myInfo } from '@constants/myInfo';
 
@@ -13,7 +12,6 @@ interface ChatListProps {
 
 function ChatList({ chats, alarmOff }: ChatListProps) {
   const chatListRef = useRef<HTMLDivElement>(null);
-
   const partnerList = findPartnerList(myInfo.userId);
   useEffect(() => {
     if (chatListRef.current)

@@ -13,12 +13,16 @@ export const MyMessage = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
+  word-break: break-all;
+  max-width: 80%;
 `;
 
 export const PartnerMessage = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
+  word-break: break-all;
+  max-width: 80%;
 `;
 
 export const Chat = styled.div<{ myId: number; userId: number }>`
@@ -52,6 +56,7 @@ export const ChatTimeMessageWrapper = styled.div`
 export const ChatTime = styled.div`
   font-size: 12px;
   color: gray;
+  white-space: nowrap;
 `;
 
 export const Nickname = styled.div`
