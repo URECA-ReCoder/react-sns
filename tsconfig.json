@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ES5",
+    "outDir": "./dist",
+    "moduleResolution": "Node",
+    "lib": ["ES2015", "DOM", "DOM.Iterable"]
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "baseUrl": "./src",
+  "paths": {
+    "@apis/*": ["apis/*"],
+    "@assets/*": ["assets/*"],
+    "@components/*": ["components/*"],
+    "@constants/*": ["constants/*"],
+    "@hooks/*": ["hooks/*"],
+    "@pages/*": ["pages/*"],
+    "@stores/*": ["stores/*"],
+    "@utils/*": ["utils/*"],
+    "@types/*": ["types/*"]
+  }
+}
