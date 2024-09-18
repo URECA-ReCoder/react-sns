@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+const Header = () => {
+  return (
+    <HeaderContainer>
+      <BackButton>뒤로</BackButton>
+      <Title>
+        🔔
+        <Video>🎬</Video>
+      </Title>
+    </HeaderContainer>
+  );
+};
+
+
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
@@ -29,17 +42,5 @@ const BackButton = styled.button`
   font-size: 16px;
   color: #007bff;
 `;
-
-const Header = () => {
-  return (
-    <HeaderContainer>
-      <BackButton>뒤로</BackButton>
-      <Title>
-        🔔
-        <Video>🎬</Video>
-      </Title>
-    </HeaderContainer>
-  );
-};
 
 export default Header;
