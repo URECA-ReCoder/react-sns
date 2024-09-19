@@ -4,9 +4,9 @@
     "target": "ES5",
     "outDir": "./dist",
     "moduleResolution": "Node",
-    "lib": ["ES2015", "DOM", "DOM.Iterable"],
-    "typeRoots": ["@types"]
+    "lib": ["ES2015", "DOM", "DOM.Iterable"]
   },
+  "typeRoots": ["@types"],
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "noImplicitAny": true

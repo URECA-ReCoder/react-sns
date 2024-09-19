@@ -17,4 +17,3 @@ const SpeechBubble2 = styled.div`
   margin: 10px 0;
   text-align: right;
 `;
-

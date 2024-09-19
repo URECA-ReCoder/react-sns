@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import IU from '../../public/images/IU.png';
-import Me from '../../public/images/Me.png';
+import IU from '/public/images/IU.png';
+import Me from '/public/images/Me.png';
 
 const ChattingContainer = styled.div`
   width: 100%;
