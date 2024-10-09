@@ -12,13 +12,13 @@ const Footer: React.FC<FooterProps> = ({ profileImage }) => {
         <img src="/images/home.png" alt="Home" style={imageStyle} />
       </div>
       <div style={iconStyle}>
-        <img src="/images/search.png" alt="Search" style={imageStyle} />
+        <img src="/images/loupe.png" alt="Search" style={imageStyle} />
       </div>
       <div style={iconStyle}>
-        <img src="/images/add.png" alt="Add" style={imageStyle} />
+        <img src="/images/more.png" alt="Add" style={imageStyle} />
       </div>
       <div style={iconStyle}>
-        <img src="/images/video.png" alt="Notifications" style={imageStyle} />
+        <img src="/images/video2.png" alt="Notifications" style={imageStyle} />
       </div>
       <div style={iconStyle}>
         <img src={profileImage} alt="Profile" style={profileImageStyle} />
