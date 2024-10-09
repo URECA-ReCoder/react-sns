@@ -1,60 +1,66 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { useNavigate, useParams } from 'react-router-dom';
+import { messageState, userState } from '../recoil/atoms';
 import Header from './Header';
-import styled from 'styled-components';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 import chatData from '../assets/data/ChatData.json';
 import userData from '../assets/data/UserData.json';
-// User 및 Message 인터페이스 정의
-interface User {
-  id: number;
-  userImage: string;
-  userName: string;
-}
-
-interface Message {
-  id: number;
-  userId: number;
-  time: string;
-  text: string;
-}
+import styled from 'styled-components';  
 
 const ChatApp = () => {
-  // 메시지와 사용자 데이터를 상태로 관리
-  const [messages, setMessages] = useState<Message[]>(chatData);
-  const [users, setUsers] = useState<{ [key: number]: User }>(() => {
-    const usersMap: { [key: number]: User } = {};
-    userData.forEach(user => {
-      usersMap[user.id] = user;
-    });
-    return usersMap;
-  });
-
+  const [messages, setMessages] = useRecoilState(messageState);
+  const [users, setUsers] = useRecoilState(userState);
+  const navigate = useNavigate();
+  // URL에서 사용자 ID 가져오기
+  const { userId } = useParams<{ userId: string }>();
+  
   // 기본 사용자 ID
   const MY_ID = 0;
 
   // 메시지 전송 핸들러
   const handleSendMessage = (newMessageText: string) => {
-    const newMessage: Message = {
+    const newMessage = {
       id: Date.now(),
       userId: MY_ID,
       time: new Date().toLocaleTimeString(),
-      text: newMessageText
+      text: newMessageText,
     };
 
-    setMessages(prevMessages => [...prevMessages, newMessage]);
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
+  
+  const handleBackClick = () => {
+    navigate('/');
+  };
+
+  // 애플리케이션 처음 로드 시 초기 데이터 설정
+  useEffect(() => {
+    const usersMap: { [key: number]: User } = {};
+    userData.forEach((user) => {
+      usersMap[user.id] = user;
+    });
+
+    setUsers(usersMap);
+    
+    // 선택된 사용자 ID에 해당하는 메시지만 가져오기
+    const userMessages = chatData.filter(message => 
+      message.userId === parseInt(userId) || message.userId === MY_ID
+    );
+
+    setMessages(userMessages);
+  }, [setUsers, setMessages, userId]);
 
   return (
     <ChatContainer>
-      <Header />
+      <Header onBackClick={handleBackClick} /> 
       <ChatMessages messages={messages} users={users} />
       <ChatInput onSendMessage={handleSendMessage} />
     </ChatContainer>
   );
 };
 
-// 스타일 컴포넌트 하단 정의
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
