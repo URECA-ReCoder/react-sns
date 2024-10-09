@@ -5,11 +5,12 @@ interface ChatItemProps {
   profileImage: string;
   name: string;
   status: string;
+  onClick: () => void;
 }
 
-const ChatItem: React.FC<ChatItemProps> = ({ profileImage, name, status }) => {
+const ChatItem: React.FC<ChatItemProps> = ({ profileImage, name, status,onClick }) => {
   return (
-    <ChatItemContainer className="chat-item">
+    <ChatItemContainer className="chat-item" onClick={onClick}>
       <img
         src={profileImage}
         alt={`${name} profile`}

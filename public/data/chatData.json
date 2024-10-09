@@ -126,18 +126,25 @@
       ]
     },
     {
+      
       "id": "chaewoo",
       "name": "차은우",
       "profileImage": "/images/cha.png",
       "status": "\\복적↖복적↘",
       "chats": [
         {
-          "sender": "chaewoo",
+          "index": 1,
+            
+      "id": "chaewoo",
+      "name": "차은우",
           "message": "오늘 하루는 어땠어?",
           "time": "오후 08:30"
         },
         {
-          "sender": "eonny",
+
+          "index": 2,
+          "id": "eonny",
+          "name":"임시언",
           "message": "평범했어. 너는?",
           "time": "오후 08:32"
         }
