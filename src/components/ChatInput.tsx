@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 interface ChatInputProps {
@@ -6,37 +5,30 @@ interface ChatInputProps {
 }
 
 const ChatInput = ({ onSendMessage }: ChatInputProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // 컴포넌트가 렌더링될 때 입력 필드에 포커스
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
   // 메시지 전송 핸들러
-  const handleSendMessage = () => {
-    if (inputRef.current && inputRef.current.value.trim()) {
-      onSendMessage(inputRef.current.value);
-      inputRef.current.value = '';
+  const handleSendMessage = (input: HTMLInputElement) => {
+    if (input.value.trim()) {
+      onSendMessage(input.value);
+      input.value = ''; 
     }
   };
 
   // 엔터 키로 메시지 전송
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>, input: HTMLInputElement) => {
     if (e.key === 'Enter') {
-      handleSendMessage();
+      handleSendMessage(input);
     }
   };
 
   return (
     <InputContainer>
       <InputField
-        ref={inputRef}
         type="text"
         placeholder="메시지 보내기..."
-        onKeyPress={handleKeyPress}
+        onKeyPress={(e) => handleKeyPress(e, e.currentTarget)} 
+        autoFocus 
       />
-      <SendButton onClick={handleSendMessage}>send 📩</SendButton>
+      <SendButton onClick={(e) => handleSendMessage(e.currentTarget.previousElementSibling as HTMLInputElement)}>send 📩</SendButton>
     </InputContainer>
   );
 };
