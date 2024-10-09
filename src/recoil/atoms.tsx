@@ -1,5 +1,21 @@
 import { atom } from 'recoil';
 
+interface Message {
+  id: number;
+  userId: number;
+  text: string;
+  time: string;
+}
+
+interface MessageState {
+  [key: number]: Message[];
+}
+
+export const doNotDisturbState = atom<boolean>({
+  key: 'doNotDisturbState',
+  default: false,
+});
+
 export const userState = atom({
   key: 'userState', // 고유 키 값
   default: [
@@ -42,7 +58,7 @@ export const userState = atom({
   ],
 });
 
-export const messageState = atom({
+export const messageState = atom<MessageState>({
   key: 'messageState',
   default: {
     1: [
