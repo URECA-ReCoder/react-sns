@@ -1,6 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
+import RouterList from './RouterList.tsx';
+import { RecoilRoot } from 'recoil';
 
 // 에러 : React 루트 엘리먼트를 만들 때 container가 null일 수 있어 발생하는 문제
 const container = document.getElementById('root');
@@ -9,6 +12,11 @@ const container = document.getElementById('root');
 if (!container) throw new Error('Failed to find root element');
 const root = createRoot(container).render(
   <StrictMode>
-    <App />
+    <RecoilRoot>
+      <BrowserRouter>
+        {/* <App /> */}
+        <RouterList />
+      </BrowserRouter>
+    </RecoilRoot>
   </StrictMode>
 );
