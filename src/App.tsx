@@ -1,10 +1,12 @@
-import ChatApp from './components/ChatApp'; 
+import React from 'react';
+import { RecoilRoot } from 'recoil';
+import AppRouter from './router'; 
 
 function App() {
   return (
-    <div>
-      <ChatApp /> 
-    </div>
+    <RecoilRoot>
+      <AppRouter /> 
+    </RecoilRoot>
   );
 }
 
