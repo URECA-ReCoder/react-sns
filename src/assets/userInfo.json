@@ -10,5 +10,11 @@
     "name": "이효린",
     "nickname": "횰인",
     "image": "https://cdn.pixabay.com/photo/2024/03/15/17/50/dogs-8635461_1280.jpg"
+  },
+  {
+    "userId": 2,
+    "name": "노이진",
+    "nickname": "바이너리",
+    "image": "https://cdn.pixabay.com/photo/2024/03/15/17/50/dogs-8635461_1280.jpg"
   }
 ]
