@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange }) => {
       <img src="/images/loupe.png" style={{width:'18px'}}/>
       <input
         type="text"
-        placeholder="이름 검색"
+        placeholder="검색어를 입력하세요..."
         onChange={(e) => onSearchChange(e.target.value)}
         style={{
           width: '100%',
