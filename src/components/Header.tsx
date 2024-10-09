@@ -1,9 +1,16 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import styled from 'styled-components';
 
 const Header = () => {
+  const navigate = useNavigate(); 
+  const handleBackClick = () => {
+    navigate('/'); 
+  };
+
   return (
     <HeaderContainer>
-      <BackButton>뒤로</BackButton>
+      <BackButton onClick={handleBackClick}>뒤로</BackButton>
       <Title>
         🔔
         <Video>🎬</Video>
