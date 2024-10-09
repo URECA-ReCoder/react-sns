@@ -4,12 +4,23 @@ import Arrow from '/assets/left.svg';
 import Bell from '/assets/bell-ring.svg';
 import Camcoder from '/assets/video-camera.svg';
 import Profile from '/assets/minji.jpg';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const nav = useNavigate();
+
+  const onClickButton = (link) => {
+    nav(link);
+  };
+
   return (
     <div css={headerStyle}>
       <div css={leftIconStyle}>
-        <img src={Arrow} css={iconStyle} />
+        <img
+          src={Arrow}
+          css={iconStyle}
+          onClick={() => onClickButton('/list')}
+        />
         <div css={imgTextLayout}>
           <img src={Profile} css={imgStyle} />
           <div css={textStyle}>
@@ -45,6 +56,9 @@ const headerStyle = css`
 const iconStyle = css`
   width: 36px;
   height: 36px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const leftIconStyle = css`
