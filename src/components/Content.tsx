@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import userData from '../db/user.json';
 import { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import { messageState, userState } from '../recoil/atoms';
+import { doNotDisturbState, messageState, userState } from '../recoil/atoms';
 
 // 메시지 타입
 interface messageType {
@@ -14,25 +14,15 @@ interface messageType {
   time: string;
 }
 
-// // messages의 타입을 App.tsx의 messageType[]과 동일하게 맞춤
-// interface contentType {
-//   messages: messageType[];
-// }
-
-// // user 타입
-// interface userType {
-//   userId: number;
-//   userName: string;
-//   profile: string;
-// }
-
 interface ContentProps {
-  chatId: string;
+  chatId: number;
 }
 
 function Content({ chatId }: ContentProps) {
   const messages = useRecoilValue(messageState);
   const users = useRecoilValue(userState);
+  const isDoNotDisturb = useRecoilValue(doNotDisturbState);
+  const currentUser = users.find((user) => user.userId === (chatId || '0'));
 
   const getUserInfo = (userId: number) => {
     return users.find((user) => user.userId === userId);
@@ -70,6 +60,11 @@ function Content({ chatId }: ContentProps) {
           </div>
         );
       })}
+      {isDoNotDisturb && currentUser && (
+        <div css={doNotDisturbMessageStyle}>
+          <p>{`${currentUser.userName}님이 방해금지모드를 설정하여 메시지를 전송할 수 없습니다.`}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -144,4 +139,12 @@ const bubbleAndTimeStyle = (isUser: boolean) => css`
   align-items: flex-end;
   gap: 2px;
   flex-direction: ${isUser ? 'row-reverse' : 'row'};
+`;
+
+const doNotDisturbMessageStyle = css`
+  padding: 10px;
+  color: gray;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 200;
 `;

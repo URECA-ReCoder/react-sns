@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import PropTypes from 'prop-types';
 import SubmitArrow from '/assets/submit.svg';
 import { useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { doNotDisturbState } from '../recoil/atoms';
+import { useParams } from 'react-router-dom';
 
 interface inputBoxType {
   addMessage: (text: string) => void;
@@ -11,6 +13,7 @@ interface inputBoxType {
 function InputBox({ addMessage }: inputBoxType) {
   const [text, setText] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const isDoNotDisturb = useRecoilValue(doNotDisturbState);
 
   // 각 이벤트 핸들러에 맞는 event 지정(Form, Change, Keyboard ...)
   // form 제출 시 새로고침 방지
@@ -44,9 +47,14 @@ function InputBox({ addMessage }: inputBoxType) {
           <input
             type="text"
             value={text}
-            placeholder="메시지를 입력해주세요."
+            placeholder={
+              isDoNotDisturb
+                ? '메시지를 전송할 수 없습니다.'
+                : '메시지를 입력해주세요.'
+            }
             css={inputStyle}
             onChange={handleInputChange}
+            disabled={isDoNotDisturb}
             autoFocus
           />
           <img src={SubmitArrow} css={submitBtnStyle} onClick={onClickButton} />

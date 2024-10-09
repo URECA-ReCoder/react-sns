@@ -9,7 +9,7 @@ import { userState } from '../recoil/atoms';
 export default function ListContent() {
   const nav = useNavigate();
 
-  const onClickButton = (chatId) => {
+  const onClickButton = (chatId: number) => {
     nav(`/chatroom/${chatId}`);
   };
 
@@ -42,7 +42,6 @@ export default function ListContent() {
 // emotion/css
 
 const contentStyle = css`
-  width: 100%;
   max-width: 430px;
   height: calc(var(--vh, 1vh) * 100 - 103px);
   padding: 23px 23px 0 23px;

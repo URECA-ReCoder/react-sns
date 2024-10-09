@@ -2,20 +2,27 @@
 import { css } from '@emotion/react';
 import Arrow from '/assets/left.svg';
 import Bell from '/assets/bell-ring.svg';
+import NoBell from '/assets/bell-no-ring.svg';
 import Camcoder from '/assets/video-camera.svg';
-import Profile from '/assets/minji.jpg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { userState } from '../recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { doNotDisturbState, userState } from '../recoil/atoms';
 
 function Header() {
   const nav = useNavigate();
   const { chatId } = useParams<{ chatId: string }>();
   const users = useRecoilValue(userState);
-  const currentUser = users.find((user) => user.userId === parseInt(chatId));
+  const currentUser = users.find(
+    (user) => user.userId === parseInt(chatId || '0', 10)
+  );
+  const [isDoNotDisturb, setIsDoNotDisturb] = useRecoilState(doNotDisturbState);
 
   const onClickButton = (link: string) => {
     nav(link);
+  };
+
+  const toggleDoNotDisturb = () => {
+    setIsDoNotDisturb((prevState) => !prevState);
   };
 
   return (
@@ -39,7 +46,11 @@ function Header() {
         </div>
       </div>
       <div css={rightIconStyle}>
-        <img src={Bell} css={iconStyle} />
+        <img
+          src={isDoNotDisturb ? NoBell : Bell}
+          css={iconStyle}
+          onClick={toggleDoNotDisturb}
+        />
         <img src={Camcoder} css={iconStyle} />
       </div>
     </div>
