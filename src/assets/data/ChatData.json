@@ -19,7 +19,7 @@
   },
   {
     "id": 4,
-    "userId": 1,
+    "userId": 2,
     "text": "금세 터질 것 같아 우",
     "time": "오후 08:53"
   },
@@ -37,7 +37,7 @@
   },
   {
     "id": 7,
-    "userId": 1,
+    "userId": 2,
     "text": "꽃잎의 색은 우리 마음 가는 대로 칠해",
     "time": "오후 09:43"
   },
@@ -56,7 +56,20 @@
   {
     "id": 10,
     "userId": 1,
-    "text": "The one and only you are my celebrity",
+    "text": "The one and only you are my celebrity!",
+    "time": "오후 09:47"
+  }
+  ,
+  {
+    "id": 11,
+    "userId": 2,
+    "text": "☘️💕🥹",
+    "time": "오후 09:47"
+  }
+  ,{
+    "id": 11,
+    "userId": 3,
+    "text": "좋아요!",
     "time": "오후 09:47"
   }
 ]
