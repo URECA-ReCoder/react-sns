@@ -4,8 +4,6 @@ import Header from './components/Header';
 import Content from './components/Content';
 import InputBox from './components/InputBox';
 import GlobalStyle from './components/GlobalStyle';
-import { useState } from 'react';
-import messageData from './db/data.json';
 import { useSetRecoilState } from 'recoil';
 import { messageState } from './recoil/atoms';
 import { useParams } from 'react-router-dom';
@@ -21,7 +19,6 @@ interface messageType {
 function App() {
   const { chatId } = useParams<{ chatId: string }>();
   const setMessages = useSetRecoilState(messageState);
-  // const [messages, setMessages] = useState<messageType[]>(messageData.message);
 
   function addMessage(text: string): void {
     const newMessage: messageType = {
