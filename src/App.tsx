@@ -51,7 +51,6 @@ export default App;
 const wrapperStyle = css`
   width: 100%;
   max-width: 430px;
-  height: 100%;
   background: linear-gradient(#f8ff2e, #ffffff 40%);
   border: 1px solid #1d1d1d;
   overflow: hidden;
