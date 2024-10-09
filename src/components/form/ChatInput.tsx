@@ -1,8 +1,13 @@
+// components/form/ChatInput.tsx
 import React, { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 
 
-const ChatInput: React.FC = () => {
+interface ChatInputProps {
+  onSendMessage: (message: string) => void;
+}
+
+const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
   const [message, setMessage] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -12,8 +17,15 @@ const ChatInput: React.FC = () => {
 
   const handleSendClick = () => {
     if (message.trim()) {
-      console.log('Send message:', message);
+      onSendMessage(message.trim());
       setMessage('');
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendClick();
     }
   };
 
@@ -27,17 +39,18 @@ const ChatInput: React.FC = () => {
           ref={inputRef}
           value={message}
           onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
           placeholder="메시지 보내기..."
         />
         <SendIconWrapper onClick={handleSendClick}>
-          <Icon src='/images/send.png' style={{ width: '20px', height: '20px' }} />
+          <Icon src="/images/send.png" style={{ width: '20px', height: '20px' }} />
         </SendIconWrapper>
       </FormStyled>
     </InputContainer>
   );
 };
 
-// 스타일 정의
+// 스타일 정의 (유지)
 const InputContainer = styled.div`
   position: absolute;
   z-index: 2;

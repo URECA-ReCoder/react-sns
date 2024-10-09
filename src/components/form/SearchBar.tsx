@@ -1,7 +1,9 @@
 // components/SearchBar.tsx
 import React from 'react';
-
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  onSearchChange: (searchTerm: string) => void;
+}
+const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange }) => {
   return (
     <div style={{padding:'20px'}}>
 
@@ -10,6 +12,7 @@ const SearchBar: React.FC = () => {
       <input
         type="text"
         placeholder="이름 검색"
+        onChange={(e) => onSearchChange(e.target.value)}
         style={{
           width: '100%',
           padding: '6px',

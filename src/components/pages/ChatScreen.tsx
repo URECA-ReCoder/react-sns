@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../form/Header';
 import ChatMessage from '../form/ChatMessage';
@@ -7,10 +7,12 @@ import Container from '../form/Container';
 import styled from 'styled-components';
 
 const ChatScreen: React.FC = () => {
-  const { userId } = useParams<{ userId: string }>(); // URL에서 userId 파라미터를 가져옵니다.
+  const { userId } = useParams<{ userId: string }>();
   const [chatData, setChatData] = useState<any[]>([]);
+  const [newChats, setNewChats] = useState<any[]>([]);
   const [userInfo, setUserInfo] = useState<{ name: string; profileImage: string } | null>(null);
   const [me, setMe] = useState<{ name: string; profileImage: string } | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetch('/data/chatData.json')
@@ -21,11 +23,37 @@ const ChatScreen: React.FC = () => {
           setUserInfo({ name: selectedUser.name, profileImage: selectedUser.profileImage });
           setChatData(selectedUser.chats);
         }
-        // 내 정보 설정
         setMe({ name: data.me.name, profileImage: data.me.profileImage });
+
+        const savedChats = JSON.parse(localStorage.getItem(`chat-${userId}`) || '[]');
+        setNewChats(savedChats);
       })
       .catch((error) => console.error('Error fetching chat data:', error));
   }, [userId]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatData, newChats]);
+
+  const handleSendMessage = (message: string) => {
+    if (!message.trim()) return;
+
+    const newMessage = {
+      id: 'eonny',
+      name: me?.name || 'Me',
+      message: message,
+      time: new Date().toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      profileImage: me?.profileImage || '',
+    };
+
+    const updatedNewChats = [...newChats, newMessage];
+    setNewChats(updatedNewChats);
+
+    localStorage.setItem(`chat-${userId}`, JSON.stringify(updatedNewChats));
+  };
 
   return (
     <ChatScreenContainer>
@@ -33,12 +61,19 @@ const ChatScreen: React.FC = () => {
       <ChatMessages>
         {chatData.map((chat, index) => (
           <ChatMessage
-            key={index}
+            key={`chat-${index}`}
             chat={{ ...chat, profileImage: chat.id === 'eonny' ? me?.profileImage : userInfo?.profileImage }}
           />
         ))}
+        {newChats.map((chat, index) => (
+          <ChatMessage
+            key={`new-chat-${index}`}
+            chat={{ ...chat, profileImage: chat.id === 'eonny' ? me?.profileImage : userInfo?.profileImage }}
+          />
+        ))}
+        <div ref={messagesEndRef} /> 
       </ChatMessages>
-      <ChatInput />
+      <ChatInput onSendMessage={handleSendMessage} />
     </ChatScreenContainer>
   );
 };
@@ -56,6 +91,7 @@ const ChatMessages = styled.div`
   width: 100%;
   flex: 1;
   padding: 16px;
+  padding-bottom: 80px; /* 입력 창 높이만큼 아래에 여백 추가 */
   overflow-y: scroll;
 `;
 
