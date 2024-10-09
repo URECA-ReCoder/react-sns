@@ -11,10 +11,8 @@ const Header = () => {
   return (
     <HeaderContainer>
       <BackButton onClick={handleBackClick}>뒤로</BackButton>
-      <Title>
-        🔔
+      <Title>🔔</Title>
         <Video>🎬</Video>
-      </Title>
     </HeaderContainer>
   );
 };
@@ -33,7 +31,7 @@ const Title = styled.h2`
   font-size: 18px;
   color: #333;
   display: flex;
-  align-items: center;
+  margin-left: 250px;
 `;
 
 const Video = styled.span`
