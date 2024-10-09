@@ -9,7 +9,7 @@ export default function RouterList() {
     <div>
       <Routes>
         <Route path="/list" element={<List />} />
-        <Route path="/chatroom" element={<App />} />
+        <Route path="/chatroom/:chatId" element={<App />} />
       </Routes>
     </div>
   );
