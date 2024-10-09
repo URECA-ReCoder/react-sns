@@ -1,6 +1,8 @@
 import userInfo from '@assets/userInfo.json';
-export function findPartnerList(myId: number) {
-  const partners = userInfo.filter((info: UserInfo) => info.userId !== myId);
+export function findPartnerList(partnerId: number) {
+  const partners = userInfo.filter(
+    (info: UserInfo) => info.userId === partnerId
+  );
 
   const partnerInfoList = partners.map((partner) => ({
     partnerName: partner.name,

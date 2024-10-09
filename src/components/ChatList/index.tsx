@@ -8,11 +8,14 @@ import { myInfo } from '@constants/myInfo';
 interface ChatListProps {
   chats: ChatArray;
   alarmOff: boolean;
+  partnerId: number;
 }
 
-function ChatList({ chats, alarmOff }: ChatListProps) {
+function ChatList({ partnerId, chats, alarmOff }: ChatListProps) {
   const chatListRef = useRef<HTMLDivElement>(null);
-  const partnerList = findPartnerList(myInfo.userId);
+  const partnerList = findPartnerList(partnerId);
+  console.log(partnerList);
+
   useEffect(() => {
     if (chatListRef.current)
       chatListRef.current.scrollIntoView({ behavior: 'smooth' });
