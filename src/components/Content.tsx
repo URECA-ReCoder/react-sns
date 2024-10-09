@@ -3,6 +3,8 @@ import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
 import userData from '../db/user.json';
 import { useEffect, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
+import { messageState, userState } from '../recoil/atoms';
 
 // 메시지 타입
 interface messageType {
@@ -12,24 +14,31 @@ interface messageType {
   time: string;
 }
 
-// messages의 타입을 App.tsx의 messageType[]과 동일하게 맞춤
-interface contentType {
-  messages: messageType[];
+// // messages의 타입을 App.tsx의 messageType[]과 동일하게 맞춤
+// interface contentType {
+//   messages: messageType[];
+// }
+
+// // user 타입
+// interface userType {
+//   userId: number;
+//   userName: string;
+//   profile: string;
+// }
+
+interface ContentProps {
+  chatId: string;
 }
 
-// user 타입
-interface userType {
-  userId: number;
-  userName: string;
-  profile: string;
-}
+function Content({ chatId }: ContentProps) {
+  const messages = useRecoilValue(messageState);
+  const users = useRecoilValue(userState);
 
-function Content({ messages }: contentType) {
   const getUserInfo = (userId: number) => {
-    return userData.user.find((user) => user.userId === userId);
+    return users.find((user) => user.userId === userId);
   };
 
-  const contentRef = useRef<HTMLDivElement>(null); //  HTMLDivElement : <div> 요소를 조작할 때 사용할 수 있는 추가 속성을 제공
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // 메시지가 업데이트될 때 자동으로 하단으로 스크롤
   useEffect(() => {
@@ -37,14 +46,16 @@ function Content({ messages }: contentType) {
       contentRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]); // messages가 업데이트될 때마다 실행
 
+  const filteredMessages = messages[chatId] || [];
+
   return (
     <div css={contentStyle}>
-      {messages.map((msg) => {
+      {filteredMessages.map((msg) => {
         const user = getUserInfo(msg.userId); // 메시지 작성자
         const isUser = msg.userId === 0; // 사용자 유저아이디 : 0
 
         return (
-          <div key={msg.id} css={isUser ? minjiMsgBoxStyle : meMsgBoxStyle}>
+          <div key={msg.id} css={isUser ? meMsgBoxStyle : minjiMsgBoxStyle}>
             {/* 'user'은(는) 'undefined'일 수 있습니다. => 유저 정보가 있을 경우에만 표시 */}
             {user && <img src={user.profile} css={imgStyle} />}
             <div css={bubbleAndTimeStyle(isUser)}>
@@ -70,8 +81,8 @@ export default Content;
 const contentStyle = css`
   width: 100%;
   max-width: 430px;
-  /* padding-top, padding-bottom: 80px */
-  padding: 80px 0;
+  height: calc(var(--vh, 1vh) * 100 - 160px);
+  margin: 80px 0;
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -87,7 +98,7 @@ const imgStyle = css`
 
 const minjiMsgBoxStyle = css`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   margin: 20px 0;
   padding: 0px 20px;
   gap: 12px;
@@ -98,14 +109,14 @@ const meMsgBoxStyle = css`
   margin: 20px 0;
   padding: 0 20px;
   gap: 12px;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-direction: row-reverse;
 `;
 
 const bubbleStyle = (isUser: boolean) => css`
   background: linear-gradient(#ffffff, #68f33b);
   padding: 10px 15px 10px 15px;
-  border-radius: ${isUser ? '0px 20px 20px 20px' : '20px 0px 20px 20px'};
+  border-radius: ${isUser ? '20px 0px 20px 20px' : '0px 20px 20px 20px'};
   border: 1px solid;
   font-weight: 400;
   font-style: normal;
@@ -118,7 +129,7 @@ const userNameStyle = (isUser: boolean) => css`
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
-  text-align: ${isUser ? 'left' : 'right'};
+  text-align: ${isUser ? 'right' : 'left'};
 `;
 
 const timeStyle = css`
@@ -132,5 +143,5 @@ const bubbleAndTimeStyle = (isUser: boolean) => css`
   display: flex;
   align-items: flex-end;
   gap: 2px;
-  flex-direction: ${isUser ? 'row' : 'row-reverse'};
+  flex-direction: ${isUser ? 'row-reverse' : 'row'};
 `;

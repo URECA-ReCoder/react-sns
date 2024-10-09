@@ -4,12 +4,17 @@ import Arrow from '/assets/left.svg';
 import Bell from '/assets/bell-ring.svg';
 import Camcoder from '/assets/video-camera.svg';
 import Profile from '/assets/minji.jpg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../recoil/atoms';
 
 function Header() {
   const nav = useNavigate();
+  const { chatId } = useParams<{ chatId: string }>();
+  const users = useRecoilValue(userState);
+  const currentUser = users.find((user) => user.userId === parseInt(chatId));
 
-  const onClickButton = (link) => {
+  const onClickButton = (link: string) => {
     nav(link);
   };
 
@@ -22,11 +27,15 @@ function Header() {
           onClick={() => onClickButton('/list')}
         />
         <div css={imgTextLayout}>
-          <img src={Profile} css={imgStyle} />
-          <div css={textStyle}>
-            <span css={nameStyle}>민지</span>
-            <span css={idStyle}>minji</span>
-          </div>
+          {currentUser && (
+            <>
+              <img src={currentUser.profile} css={imgStyle} />
+              <div css={textStyle}>
+                <span css={nameStyle}>{currentUser.userName}</span>
+                <span css={idStyle}>{currentUser.userEngName}</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div css={rightIconStyle}>
@@ -89,7 +98,7 @@ const imgTextLayout = css`
 const textStyle = css`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const nameStyle = css`

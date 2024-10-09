@@ -3,13 +3,19 @@ import { css } from '@emotion/react';
 import searchIcon from '/assets/searchIcon.svg';
 import minji from '/assets/minji.jpg';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../recoil/atoms';
 
 export default function ListContent() {
   const nav = useNavigate();
 
-  const onClickButton = (link) => {
-    nav(link);
+  const onClickButton = (chatId) => {
+    nav(`/chatroom/${chatId}`);
   };
+
+  const users = useRecoilValue(userState);
+
+  const filteredUsers = users.filter((user) => user.userId !== 0);
 
   return (
     <div css={contentStyle}>
@@ -17,49 +23,17 @@ export default function ListContent() {
         <img src={searchIcon} css={iconStyle} />
         <input css={inputStyle} />
       </div>
+      {/* 메시지 목록 */}
       <div css={messageContainerStyle}>
-        <div css={messageBoxStyle} onClick={() => onClickButton('/chatroom')}>
-          <img src={minji} css={profileStyle} />
-          <div css={textStyle}>
-            <span css={titleStyle}>민지</span>
-            <span css={detailStyle}>마지막 메시지</span>
+        {filteredUsers.map((user) => (
+          <div css={messageBoxStyle} onClick={() => onClickButton(user.userId)}>
+            <img src={user.profile} css={profileStyle} />
+            <div css={textStyle}>
+              <span css={titleStyle}>{user.userName}</span>
+              <span css={detailStyle}>마지막 메시지</span>
+            </div>
           </div>
-        </div>
-        <div css={messageBoxStyle}>
-          <img src={minji} css={profileStyle} />
-          <div css={textStyle}>
-            <span css={titleStyle}>민지</span>
-            <span css={detailStyle}>마지막 메시지</span>
-          </div>
-        </div>
-        <div css={messageBoxStyle}>
-          <img src={minji} css={profileStyle} />
-          <div css={textStyle}>
-            <span css={titleStyle}>민지</span>
-            <span css={detailStyle}>마지막 메시지</span>
-          </div>
-        </div>
-        <div css={messageBoxStyle}>
-          <img src={minji} css={profileStyle} />
-          <div css={textStyle}>
-            <span css={titleStyle}>민지</span>
-            <span css={detailStyle}>마지막 메시지</span>
-          </div>
-        </div>
-        <div css={messageBoxStyle}>
-          <img src={minji} css={profileStyle} />
-          <div css={textStyle}>
-            <span css={titleStyle}>민지</span>
-            <span css={detailStyle}>마지막 메시지</span>
-          </div>
-        </div>
-        <div css={messageBoxStyle}>
-          <img src={minji} css={profileStyle} />
-          <div css={textStyle}>
-            <span css={titleStyle}>민지</span>
-            <span css={detailStyle}>마지막 메시지</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -70,7 +44,9 @@ export default function ListContent() {
 const contentStyle = css`
   width: 100%;
   max-width: 430px;
-  padding: 104px 23px 0 23px;
+  height: calc(var(--vh, 1vh) * 100 - 103px);
+  padding: 23px 23px 0 23px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   overflow: scroll;
