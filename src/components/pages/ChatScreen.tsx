@@ -12,6 +12,7 @@ const ChatScreen: React.FC = () => {
   const [newChats, setNewChats] = useState<any[]>([]);
   const [userInfo, setUserInfo] = useState<{ name: string; profileImage: string } | null>(null);
   const [me, setMe] = useState<{ name: string; profileImage: string } | null>(null);
+  const [isMuted, setIsMuted] = useState(false); // 뮤트 상태를 위한 state
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const ChatScreen: React.FC = () => {
   }, [chatData, newChats]);
 
   const handleSendMessage = (message: string) => {
-    if (!message.trim()) return;
+    if (isMuted || !message.trim()) return;
 
     const newMessage = {
       id: 'eonny',
@@ -55,9 +56,20 @@ const ChatScreen: React.FC = () => {
     localStorage.setItem(`chat-${userId}`, JSON.stringify(updatedNewChats));
   };
 
+  const handleBellClick = () => {
+    setIsMuted((prev) => !prev);
+  };
+
   return (
     <ChatScreenContainer>
-      {userInfo && <Header title={userInfo.name} profileImage={userInfo.profileImage} />}
+      {userInfo && (
+        <Header
+          title={userInfo.name}
+          showIcons={true}
+          profileImage={userInfo.profileImage}
+          onBellClick={handleBellClick}
+        />
+      )}
       <ChatMessages>
         {chatData.map((chat, index) => (
           <ChatMessage
@@ -71,9 +83,9 @@ const ChatScreen: React.FC = () => {
             chat={{ ...chat, profileImage: chat.id === 'eonny' ? me?.profileImage : userInfo?.profileImage }}
           />
         ))}
-        <div ref={messagesEndRef} /> 
+        <div ref={messagesEndRef} />
       </ChatMessages>
-      <ChatInput onSendMessage={handleSendMessage} />
+      <ChatInput onSendMessage={handleSendMessage} isMuted={isMuted} />
     </ChatScreenContainer>
   );
 };
@@ -91,8 +103,8 @@ const ChatMessages = styled.div`
   width: 100%;
   flex: 1;
   padding: 16px;
-  padding-bottom: 80px; /* 입력 창 높이만큼 아래에 여백 추가 */
-  overflow-y: scroll;
+  padding-bottom: 80px;
+  overflow-y: auto;
 `;
 
 export default ChatScreen;

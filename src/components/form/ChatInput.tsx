@@ -1,13 +1,12 @@
-// components/form/ChatInput.tsx
 import React, { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 
-
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
+  isMuted: boolean; // 뮤트 상태를 나타내는 prop 추가
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
+const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isMuted }) => {
   const [message, setMessage] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -16,41 +15,35 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
   };
 
   const handleSendClick = () => {
-    if (message.trim()) {
-      onSendMessage(message.trim());
+    if (message.trim() && !isMuted) {
+      onSendMessage(message);
       setMessage('');
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendClick();
     }
   };
 
   return (
     <InputContainer>
       <FormStyled onSubmit={(e) => e.preventDefault()}>
-        <SearchButton>
-          <Icon src="/images/search.png" />
+        <SearchButton disabled={isMuted}>
+          <Icon src='/images/loupe.png' />
         </SearchButton>
         <InputStyled
           ref={inputRef}
-          value={message}
+          value={isMuted ? '메시지 전송이 불가능합니다' : message}
           onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
           placeholder="메시지 보내기..."
+          disabled={isMuted} // 뮤트 상태일 때 입력 비활성화
+          style={isMuted ? { color: '#888' } : {}} // 뮤트 상태일 때 텍스트 색상 변경
         />
-        <SendIconWrapper onClick={handleSendClick}>
-          <Icon src="/images/send.png" style={{ width: '20px', height: '20px' }} />
+        <SendIconWrapper onClick={handleSendClick} disabled={isMuted}>
+          <Icon src='/images/send.png' style={{ width: '20px', height: '20px' }} />
         </SendIconWrapper>
       </FormStyled>
     </InputContainer>
   );
 };
 
-// 스타일 정의 (유지)
+// 스타일 정의
 const InputContainer = styled.div`
   position: absolute;
   z-index: 2;
@@ -79,7 +72,7 @@ const InputStyled = styled.textarea`
   padding: 8px 16px;
   resize: none;
   border: none;
-  background: none;
+  background: none; /* 배경색 제거 */
   color: #242424;
   font-weight: 400;
   letter-spacing: -0.4px;
@@ -88,6 +81,10 @@ const InputStyled = styled.textarea`
   border-radius: 20px;
   &:focus {
     outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: transparent; /* 배경색을 투명하게 설정 */
   }
 `;
 
@@ -108,7 +105,7 @@ const SearchButton = styled.button`
   align-items: center;
 `;
 
-const SendIconWrapper = styled.div`
+const SendIconWrapper = styled.button`
   width: 52px;
   height: 36px;
   border-radius: 24px;
@@ -117,6 +114,10 @@ const SendIconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+  }
 `;
 
 export default ChatInput;

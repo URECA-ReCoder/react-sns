@@ -1,30 +1,45 @@
+// components/form/Header.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   title?: string;
   profileImage?: string;
+  showIcons?: boolean;
+  onBellClick?: () => void; // 벨 아이콘 클릭 핸들러
 }
 
-const Header: React.FC<HeaderProps> = ({ title = "corinthionia", profileImage }) => {
+const Header: React.FC<HeaderProps> = ({ title = "corinthionia", profileImage, showIcons = false, onBellClick }) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
+    navigate(-1);
   };
 
   return (
     <header style={headerStyle}>
-      <button style={buttonStyle} onClick={handleBackClick}>
-        <img src="/images/back.png" alt="Back" style={iconStyle} />
-      </button>
-      {profileImage ? (
-        <div style={userInfoStyle}>
-          <img src={profileImage} alt={title} style={profileImageStyle} />
+      <div style={leftContainerStyle}>
+        <button style={buttonStyle} onClick={handleBackClick}>
+          <img src="/images/back.png" alt="Back" style={iconStyle} />
+        </button>
+        {profileImage ? (
+          <div style={userInfoStyle}>
+            <img src={profileImage} alt={title} style={profileImageStyle} />
+            <h2 style={userNameStyle}>{title}</h2>
+          </div>
+        ) : (
           <h2 style={userNameStyle}>{title}</h2>
+        )}
+      </div>
+      {showIcons && (
+        <div style={iconContainerStyle}>
+          <button style={buttonStyle} onClick={onBellClick}>
+            <img src="/images/bell.png" alt="Notifications" style={iconStyle} />
+          </button>
+          <button style={buttonStyle}>
+            <img src="/images/video.png" alt="Video Call" style={iconStyle} />
+          </button>
         </div>
-      ) : (
-        <h2 style={userNameStyle}>{title}</h2>
       )}
     </header>
   );
@@ -35,7 +50,13 @@ const headerStyle: React.CSSProperties = {
   borderBottom: '1px solid #ddd',
   display: 'flex',
   alignItems: 'center',
-  width:'100%',
+  justifyContent: 'space-between',
+  width: '100%',
+};
+
+const leftContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
 };
 
 const buttonStyle: React.CSSProperties = {
@@ -48,13 +69,19 @@ const buttonStyle: React.CSSProperties = {
 };
 
 const iconStyle: React.CSSProperties = {
-  width: '80%',
-  height: 'auto',
+  width: '24px',
+  height: '24px',
 };
 
 const userInfoStyle: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
+};
+
+const iconContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
 };
 
 const profileImageStyle: React.CSSProperties = {
