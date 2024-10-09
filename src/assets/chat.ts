@@ -22,7 +22,6 @@ export const chatAppData: {
           message: '밥 드셨어요 ?',
           timestamp: '2024-09-11T09:07:00Z',
         },
-        // 다른 메시지들
       ],
     },
     {
@@ -30,7 +29,7 @@ export const chatAppData: {
       roomName: '저녁 메뉴 토론방',
       messages: [
         {
-          userId: 1,
+          userId: 2,
           message: '오늘 저녁 뭐 드셨어요 ?',
           timestamp: '2024-09-11T09:10:00Z',
         },
@@ -40,7 +39,7 @@ export const chatAppData: {
           timestamp: '2024-09-11T09:15:00Z',
         },
         {
-          userId: 1,
+          userId: 2,
           message: '무슨 치킨이요?',
           timestamp: '2024-09-11T09:20:00Z',
         },
