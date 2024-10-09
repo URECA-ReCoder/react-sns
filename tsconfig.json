@@ -16,8 +16,8 @@
     // strict mode
     "strict": true
   },
-  "typeRoots": ["./node_modules/@types", "modules/global"],
-  "include": ["./src/**/*"],
+  "typeRoots": ["./node_modules/@types", "@types"], // 컴파일러 옵션 바깥에 넣기!!
+  "include": ["./src/**/*", "@types"],
   "exclude": ["node_modules", "dist"]
 
   /* Visit https://aka.ms/tsconfig to read more about this file */
