@@ -1,47 +1,109 @@
-// components/ChatInput.tsx
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import styled from '@emotion/styled';
+
 
 const ChatInput: React.FC = () => {
+  const [message, setMessage] = useState('');
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSendClick = () => {
+    if (message.trim()) {
+      console.log('Send message:', message);
+      setMessage('');
+    }
+  };
+
   return (
-    <div style={chatInputStyle}>
-      <input
-        type="text"
-        placeholder="메시지 보내기..."
-        style={inputStyle}
-      />
-      <button style={buttonStyle}>
-        <img src="/images/send.png" alt="Send" style={sendIconStyle} />
-      </button>
-    </div>
+    <InputContainer>
+      <FormStyled onSubmit={(e) => e.preventDefault()}>
+        <SearchButton>
+          <Icon src="/images/search.png" />
+        </SearchButton>
+        <InputStyled
+          ref={inputRef}
+          value={message}
+          onChange={handleInputChange}
+          placeholder="메시지 보내기..."
+        />
+        <SendIconWrapper onClick={handleSendClick}>
+          <Icon src='/images/send.png' style={{ width: '20px', height: '20px' }} />
+        </SendIconWrapper>
+      </FormStyled>
+    </InputContainer>
   );
 };
 
-const chatInputStyle: React.CSSProperties = {
-  display: 'flex',
-  width:'100%',
-  padding: '10px',
-  borderTop: '1px solid #ddd',
-};
+// 스타일 정의
+const InputContainer = styled.div`
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  padding: 12px 8px 32px;
+`;
 
-const inputStyle: React.CSSProperties = {
-  flex: 1,
-  border: 'none',
-  padding: '10px',
-  fontSize: '1rem',
-  borderRadius: '20px',
-  outline: 'none',
-};
+const FormStyled = styled.form`
+  width: 100%;
+  border-radius: 24px;
+  padding: 6px;
+  background: #e3e3e35f;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+`;
 
-const buttonStyle: React.CSSProperties = {
-  background: 'none',
-  border: 'none',
-  marginLeft: '8px',
-  cursor: 'pointer',
-};
+const InputStyled = styled.textarea`
+  flex: 1;
+  height: 36px;
+  padding: 8px 16px;
+  resize: none;
+  border: none;
+  background: none;
+  color: #242424;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  cursor: text;
+  font-size: 16px;
+  border-radius: 20px;
+  &:focus {
+    outline: none;
+  }
+`;
 
-const sendIconStyle: React.CSSProperties = {
-  width: '24px',
-  height: '24px',
-};
+const Icon = styled.img`
+  width: 16px;
+  height: 16px;
+  justify-content: center;
+`;
+
+const SearchButton = styled.button`
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SendIconWrapper = styled.div`
+  width: 52px;
+  height: 36px;
+  border-radius: 24px;
+  background-color: #6245ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
 
 export default ChatInput;
