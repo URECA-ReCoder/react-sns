@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import PropTypes from 'prop-types';
-import userData from '../db/user.json';
 import { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import { doNotDisturbState, messageState, userState } from '../recoil/atoms';
@@ -19,9 +17,9 @@ interface ContentProps {
 }
 
 function Content({ chatId }: ContentProps) {
-  const messages = useRecoilValue(messageState);
-  const users = useRecoilValue(userState);
-  const isDoNotDisturb = useRecoilValue(doNotDisturbState);
+  const messages = useRecoilValue(messageState); // Recoil 상태에서 메시지 가져오기
+  const users = useRecoilValue(userState); // Recoil 상태에서 유저 정보 가져오기
+  const isDoNotDisturb = useRecoilValue(doNotDisturbState); // 방해금지모드 상태
   const currentUser = users.find((user) => user.userId === (chatId || '0'));
 
   const getUserInfo = (userId: number) => {
@@ -36,7 +34,8 @@ function Content({ chatId }: ContentProps) {
       contentRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]); // messages가 업데이트될 때마다 실행
 
-  const filteredMessages = messages[chatId] || [];
+  // 현재 채팅방에 해당하는 메시지 필터링
+  const filteredMessages = messages[chatId] || []; // 메시지 객체에서 해당 chatId의 메시지 배열을 가져옴
 
   return (
     <div css={contentStyle}>

@@ -10,10 +10,11 @@ import { doNotDisturbState, userState } from '../recoil/atoms';
 
 function Header() {
   const nav = useNavigate();
-  const { chatId } = useParams<{ chatId: string }>();
+  const { chatId } = useParams<{ chatId: string }>(); // 현재 채팅방 ID
   const users = useRecoilValue(userState);
+  // 현재 채팅방에 맞는 사용자 정보 필터링
   const currentUser = users.find(
-    (user) => user.userId === parseInt(chatId || '0', 10)
+    (user) => user.userId === parseInt(chatId || '0', 10) // chatId가 undefined일 경우 '0' 사용
   );
   const [isDoNotDisturb, setIsDoNotDisturb] = useRecoilState(doNotDisturbState);
 

@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 
+// Message 타입 정의
 interface Message {
   id: number;
   userId: number;
@@ -7,15 +8,18 @@ interface Message {
   time: string;
 }
 
+// MessageState 타입 정의
 interface MessageState {
   [key: number]: Message[];
 }
 
+// Do Not Disturb 상태 정의
 export const doNotDisturbState = atom<boolean>({
   key: 'doNotDisturbState',
   default: false,
 });
 
+// User 상태 정의
 export const userState = atom({
   key: 'userState', // 고유 키 값
   default: [
@@ -58,6 +62,7 @@ export const userState = atom({
   ],
 });
 
+// Message 상태 정의
 export const messageState = atom<MessageState>({
   key: 'messageState',
   default: {

@@ -17,13 +17,13 @@ interface messageType {
 }
 
 function App() {
-  const { chatId } = useParams<{ chatId: string }>();
+  const { chatId } = useParams<{ chatId: string }>(); // URL에서 chatId를 가져옴
   const setMessages = useSetRecoilState(messageState);
 
   function addMessage(text: string): void {
     const newMessage: messageType = {
       id: Date.now(),
-      userId: 0,
+      userId: 0, // 항상 0으로 설정(메시지를 추가하면 '내'가 추가하도록 설정)
       text: text,
       time: new Date().toLocaleTimeString([], {
         hour: '2-digit',

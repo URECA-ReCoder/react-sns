@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import searchIcon from '/assets/searchIcon.svg';
-import minji from '/assets/minji.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../recoil/atoms';
@@ -13,9 +12,9 @@ export default function ListContent() {
     nav(`/chatroom/${chatId}`);
   };
 
-  const users = useRecoilValue(userState);
+  const users = useRecoilValue(userState); // Recoil 상태에서 유저 정보 가져오기
 
-  const filteredUsers = users.filter((user) => user.userId !== 0);
+  const filteredUsers = users.filter((user) => user.userId !== 0); // '나'를 제외한 유저만 나오도록 필터링
 
   return (
     <div css={contentStyle}>
