@@ -5,3 +5,17 @@ interface Chat {
 }
 
 type ChatArray = Chat[];
+
+// 채팅 메시지 정보
+interface Message {
+  userId: number;
+  message: string;
+  timestamp: string;
+}
+
+// 대화방 정보
+interface ChatRoom {
+  roomId: number;
+  roomName: string;
+  messages: Message[];
+}
