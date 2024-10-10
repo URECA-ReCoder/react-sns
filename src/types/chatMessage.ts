@@ -6,7 +6,6 @@ interface Chat {
 
 type ChatArray = Chat[];
 
-// 채팅 메시지 정보
 interface Message {
   userId: number;
   message: string;
