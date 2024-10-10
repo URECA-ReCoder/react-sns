@@ -1,5 +1,5 @@
 import { myInfo } from '@constants/myInfo';
-import { findPartnerList } from '../../utils/findPartnerInfo';
+import { findPartnerList } from '../../../utils/findPartnerInfo';
 import * as S from './Header.styles';
 import { useParams } from 'react-router-dom';
 

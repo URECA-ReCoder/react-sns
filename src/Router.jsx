@@ -1,6 +1,6 @@
 import App from './App';
 import { ROUTE } from '@constants/index';
-import ChatIndividual from '@pages/ChatIndividual';
+import ChatIndividual from '@pages/chatIndividual/ChatIndividual';
 import NotFound from '@pages/NotFound';
 import { Route, Routes } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
-import Header from '@components/Header';
-import MessageInput from '@components/MessageInput';
-import ChatList from '@components/ChatList';
+import Header from '@pages/chatIndividual/Header';
+import MessageInput from '@pages/chatIndividual/MessageInput';
+import ChatList from '@pages/chatIndividual/ChatList';
 import { useState } from 'react';
 import { chatAppData } from '@assets/chat';
 import { useParams } from 'react-router-dom';

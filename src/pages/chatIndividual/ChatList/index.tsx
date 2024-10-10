@@ -1,5 +1,5 @@
-import MyMessage from '@components/ChatItem/MyMessage';
-import PartnerMessage from '@components/ChatItem/PartnerMessage';
+import MyMessage from '@pages/chatIndividual/ChatItem/MyMessage';
+import PartnerMessage from '@pages/chatIndividual/ChatItem/PartnerMessage';
 import { findPartnerList } from '@utils/findPartnerInfo';
 import { useEffect, useRef } from 'react';
 import * as S from './ChatList.styles';
