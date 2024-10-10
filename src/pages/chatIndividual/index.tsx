@@ -26,8 +26,8 @@ function ChatIndividual() {
   return (
     <div>
       <Header />
-      <ChatList partnerId={partnerId} chats={chats} />
-      <MessageInput handleNewChat={handleNewChat} />
+      <ChatList partnerId={partnerId} />
+      <MessageInput />
     </div>
   );
 }

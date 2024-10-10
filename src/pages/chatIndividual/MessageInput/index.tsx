@@ -3,20 +3,20 @@ import * as S from './MessageInput.styles';
 import { useRef } from 'react';
 import createMessageData from '@utils/createMessageData';
 import { useAlarmStore } from '../stores/useAlarmStore';
-interface MessageInputProps {
-  handleNewChat: (chat: Chat) => void;
-}
+import { useChatStore } from '../stores/useNewChatStore';
+import { useParams } from 'react-router-dom';
 
-function MessageInput({ handleNewChat }: MessageInputProps) {
+function MessageInput() {
   const { alarmOff } = useAlarmStore();
+  const { setNewChats } = useChatStore();
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const { id } = useParams<{ id: string }>();
   const sendMessage = () => {
     if (!inputRef.current?.value || inputRef.current === null) {
       return;
     }
     const newChat = createMessageData(inputRef.current.value);
-    handleNewChat(newChat);
+    setNewChats(parseInt(id!), newChat);
     inputRef.current.value = '';
     inputRef.current?.focus();
   };

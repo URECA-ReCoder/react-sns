@@ -5,24 +5,26 @@ import { useEffect, useRef } from 'react';
 import * as S from './ChatList.styles';
 import { myInfo } from '@constants/myInfo';
 import { useAlarmStore } from '../stores/useAlarmStore';
+import { useChatStore } from '../stores/useNewChatStore';
 
 interface ChatListProps {
-  chats: ChatArray;
   partnerId: number;
 }
 
-function ChatList({ partnerId, chats }: ChatListProps) {
+function ChatList({ partnerId }: ChatListProps) {
   const chatListRef = useRef<HTMLDivElement>(null);
   const partnerList = findPartnerList(partnerId);
   const { alarmOff } = useAlarmStore();
-
+  const { chats } = useChatStore();
+  const currentChats = chats.filter((chat) => chat.roomId === partnerId)[0]
+    .messages;
   useEffect(() => {
     if (chatListRef.current)
       chatListRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [chats, alarmOff]);
   return (
     <S.ChatListWrapper>
-      {chats.map((item, index) => {
+      {currentChats.map((item, index) => {
         return item.userId === myInfo.userId ? (
           <MyMessage key={index} message={item} />
         ) : (

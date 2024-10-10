@@ -1,6 +1,3 @@
-import userInfo from '@assets/userInfo.json';
-
-// 전체 채팅 애플리케이션 데이터
 export const chatAppData = [
   {
     roomId: 1,
