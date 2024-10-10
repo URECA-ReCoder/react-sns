@@ -11,12 +11,10 @@ const container = document.getElementById('root');
 // 해당 container가 null일 때에 대해 예외 처리 해주기
 if (!container) throw new Error('Failed to find root element');
 const root = createRoot(container).render(
-  <StrictMode>
-    <RecoilRoot>
-      <BrowserRouter>
-        {/* <App /> */}
-        <RouterList />
-      </BrowserRouter>
-    </RecoilRoot>
-  </StrictMode>
+  <RecoilRoot>
+    <BrowserRouter>
+      {/* <App /> */}
+      <RouterList />
+    </BrowserRouter>
+  </RecoilRoot>
 );
