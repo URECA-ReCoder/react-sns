@@ -1,10 +1,10 @@
-import Header from '@pages/chatList/Header';
-import FindName from '@pages/chatList/FindName';
-import List from '@pages/chatList/List';
-import BottomTab from '@pages/chatList/BottomTab';
+import Header from '@pages/chatList/components/Header';
+import FindName from '@pages/chatList/components/FindName';
+import List from '@pages/chatList/components/List';
+import BottomTab from '@pages/chatList/components/BottomTab';
 import styled from 'styled-components';
 
-function App() {
+function ChatList() {
   return (
     <ChatListWrapper>
       <Header />
@@ -15,7 +15,7 @@ function App() {
   );
 }
 
-export default App;
+export default ChatList;
 
 const ChatListWrapper = styled.div`
   display: flex;

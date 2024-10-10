@@ -2,7 +2,7 @@ import React from 'react';
 import { chatAppData } from '@assets/chat';
 import styled from 'styled-components';
 import userInfo from '@assets/userInfo.json';
-import useFilterChatListStore from './stores/useFilterChatListStore';
+import useFilterChatListStore from '../stores/useFilterChatListStore';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE } from '@constants';
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useFilterChatListStore from './stores/useFilterChatListStore';
+import useFilterChatListStore from '../stores/useFilterChatListStore';
 
 function FindName() {
   const { handleFindChange } = useFilterChatListStore();
