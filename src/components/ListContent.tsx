@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import searchIcon from '/assets/searchIcon.svg';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { userState } from '../recoil/atoms';
+import { messageState, userState } from '../recoil/atoms';
 
 export default function ListContent() {
   const nav = useNavigate();
@@ -16,6 +16,8 @@ export default function ListContent() {
 
   const filteredUsers = users.filter((user) => user.userId !== 0); // '나'를 제외한 유저만 나오도록 필터링
 
+  const messages = useRecoilValue(messageState); // Recoil 상태에서 메시지 가져오기
+
   return (
     <div css={contentStyle}>
       <div css={searchBoxStyle}>
@@ -24,15 +26,26 @@ export default function ListContent() {
       </div>
       {/* 메시지 목록 */}
       <div css={messageContainerStyle}>
-        {filteredUsers.map((user) => (
-          <div css={messageBoxStyle} onClick={() => onClickButton(user.userId)}>
-            <img src={user.profile} css={profileStyle} />
-            <div css={textStyle}>
-              <span css={titleStyle}>{user.userName}</span>
-              <span css={detailStyle}>마지막 메시지</span>
+        {filteredUsers.map((user) => {
+          const userMessages = messages[user.userId] || []; // 유저 메시지 배열
+          const lastMessage =
+            userMessages.length > 0
+              ? userMessages[userMessages.length - 1].text
+              : '아직 메시지가 없습니다.';
+
+          return (
+            <div
+              css={messageBoxStyle}
+              onClick={() => onClickButton(user.userId)}
+            >
+              <img src={user.profile} css={profileStyle} />
+              <div css={textStyle}>
+                <span css={titleStyle}>{user.userName}</span>
+                <span css={detailStyle}>{lastMessage}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
