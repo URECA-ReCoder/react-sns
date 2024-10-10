@@ -1,28 +1,16 @@
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { USERID } from '../constants'; // userId 상수를 별도 파일에서 관리
+import { useRecoilValue } from 'recoil'; 
+import { messageState, userState } from '../recoil/atoms'; 
+import { USERID } from '../constants';
 
-// User 및 Message 인터페이스 정의
-interface User {
-  id: number;
-  userImage: string;
-  userName: string;
-}
 
-interface Message {
-  id: number;
-  userId: number;
-  time: string;
-  text: string;
-}
-
-interface ChatMessagesProps {
-  messages: Message[];
-  users: { [key: number]: User };
-}
-
-const ChatMessages = ({ messages, users }: ChatMessagesProps) => {
+const ChatMessages = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Recoil 상태에서 messages와 users 가져오기
+  const messages = useRecoilValue(messageState);
+  const users = useRecoilValue(userState);
 
   // 메시지 업데이트 시 자동 스크롤
   useEffect(() => {
@@ -34,20 +22,20 @@ const ChatMessages = ({ messages, users }: ChatMessagesProps) => {
   return (
     <MessagesContainer>
       {messages.map((message) => {
-        const user = users[message.userId] || {};
-        const isUser = user.id === USERID;
+        const user = users[message.userId]; 
+        const isUser = user && user.id === USERID;
 
         return (
           <Message key={message.id} isUser={isUser}>
-            {!isUser && <UserImage src={user.userImage} alt={user.userName} />}
+            {!isUser && <UserImage src={user?.userImage} alt={user?.userName} />}
             <MessageContent>
               <MessageInfo>
-                <span>{user.userName}</span>
+                <span>{user?.userName}</span>
                 <span>{message.time}</span>
               </MessageInfo>
               <MessageText isUser={isUser}>{message.text}</MessageText>
             </MessageContent>
-            {isUser && <UserImage src={user.userImage} alt={user.userName} />}
+            {isUser && <UserImage src={user?.userImage} alt={user?.userName} />}
           </Message>
         );
       })}
