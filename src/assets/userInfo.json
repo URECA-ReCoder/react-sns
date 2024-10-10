@@ -1,0 +1,20 @@
+[
+  {
+    "userId": 1,
+    "name": "뿌링클",
+    "nickname": "솜사탕",
+    "image": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+  },
+  {
+    "userId": 0,
+    "name": "이효린",
+    "nickname": "횰인",
+    "image": "https://cdn.pixabay.com/photo/2024/03/15/17/50/dogs-8635461_1280.jpg"
+  },
+  {
+    "userId": 2,
+    "name": "노이진",
+    "nickname": "바이너리",
+    "image": "https://cdn.pixabay.com/photo/2024/03/15/17/50/dogs-8635461_1280.jpg"
+  }
+]
