@@ -119,6 +119,7 @@ const textStyle = css`
   flex-direction: column;
   justify-content: center;
   gap: 6px;
+  width: 290px;
 `;
 
 const titleStyle = css`
