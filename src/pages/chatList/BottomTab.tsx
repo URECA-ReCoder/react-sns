@@ -9,7 +9,7 @@ function BottomTab() {
       <Home width={24} height={24} />
       <Search width={24} height={24} />
       <Plus width={24} height={24} />
-      <Video width={24} height={24} />
+      <Video width={24} height={24} />    
       <BottomProfile src={myInfo?.image} alt="profile" width={24} height={24} />
     </Wrapper>
   );
