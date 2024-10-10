@@ -4,17 +4,17 @@ import { findPartnerList } from '@utils/findPartnerInfo';
 import { useEffect, useRef } from 'react';
 import * as S from './ChatList.styles';
 import { myInfo } from '@constants/myInfo';
+import { useAlarmStore } from '../stores/useAlarmStore';
 
 interface ChatListProps {
   chats: ChatArray;
-  alarmOff: boolean;
   partnerId: number;
 }
 
-function ChatList({ partnerId, chats, alarmOff }: ChatListProps) {
+function ChatList({ partnerId, chats }: ChatListProps) {
   const chatListRef = useRef<HTMLDivElement>(null);
   const partnerList = findPartnerList(partnerId);
-  console.log(partnerList);
+  const { alarmOff } = useAlarmStore();
 
   useEffect(() => {
     if (chatListRef.current)

@@ -22,13 +22,12 @@ function ChatIndividual() {
     setChats((prevChats: Message[]) => [...prevChats, chatAppData]);
   }
   const [chats, setChats] = useState<Message[]>(chatRoomInfo.messages);
-  const [alarmOff, setAlarmOff] = useState<boolean>(false);
 
   return (
     <div>
-      <Header alarmOff={alarmOff} setAlarmOff={setAlarmOff} />
-      <ChatList partnerId={partnerId} alarmOff={alarmOff} chats={chats} />
-      <MessageInput alarmOff={alarmOff} handleNewChat={handleNewChat} />
+      <Header />
+      <ChatList partnerId={partnerId} chats={chats} />
+      <MessageInput handleNewChat={handleNewChat} />
     </div>
   );
 }

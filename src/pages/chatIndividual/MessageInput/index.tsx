@@ -2,13 +2,13 @@ import { find, send } from '@assets/png';
 import * as S from './MessageInput.styles';
 import { useRef } from 'react';
 import createMessageData from '@utils/createMessageData';
-
+import { useAlarmStore } from '../stores/useAlarmStore';
 interface MessageInputProps {
-  alarmOff: boolean;
   handleNewChat: (chat: Chat) => void;
 }
 
-function MessageInput({ alarmOff, handleNewChat }: MessageInputProps) {
+function MessageInput({ handleNewChat }: MessageInputProps) {
+  const { alarmOff } = useAlarmStore();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const sendMessage = () => {

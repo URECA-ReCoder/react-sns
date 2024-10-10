@@ -3,13 +3,10 @@ import * as S from './Header.styles';
 import Title from './Title';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE } from '@constants';
+import { useAlarmStore } from '../stores/useAlarmStore';
 
-interface HeaderProps {
-  alarmOff: boolean;
-  setAlarmOff: (alarmOff: boolean) => void;
-}
-
-function Header({ alarmOff, setAlarmOff }: HeaderProps) {
+function Header() {
+  const { alarmOff, setAlarmOff } = useAlarmStore();
   const navigate = useNavigate();
   const goChatList = () => {
     navigate(ROUTE.CHATLIST);
