@@ -1,0 +1,14 @@
+{
+  "user": [
+    {
+      "userId": 0,
+      "userName": "민지",
+      "profile": "/assets/minji.jpg"
+    },
+    {
+      "userId": 1,
+      "userName": "윤정",
+      "profile": "/assets/metamong.jpg"
+    }
+  ]
+}
