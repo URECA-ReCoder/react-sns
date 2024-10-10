@@ -1,21 +1,15 @@
-import Header from '@components/Header';
-import MessageInput from '@components/MessageInput';
-import ChatList from '@components/ChatList';
+import Header from '@pages/chatList/Header';
 import { useState } from 'react';
-import { chat } from '@assets/chat';
+import { chatAppData } from '@assets/chat';
+import FindName from '@pages/chatList/FindName';
+import List from '@pages/chatList/List';
 
 function App() {
-  function handleNewChat(chat: Chat) {
-    setChats((prevChats: ChatArray) => [...prevChats, chat]);
-  }
-  const [chats, setChats] = useState<ChatArray>(chat);
-  const [alarmOff, setAlarmOff] = useState<boolean>(false);
-
   return (
     <div>
-      <Header alarmOff={alarmOff} setAlarmOff={setAlarmOff} />
-      <ChatList alarmOff={alarmOff} chats={chats} />
-      <MessageInput alarmOff={alarmOff} handleNewChat={handleNewChat} />
+      <Header />
+      <FindName />
+      <List />
     </div>
   );
 }
