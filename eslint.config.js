@@ -33,6 +33,9 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'react/react-in-jsx-scope': 'off', // JSX에서 React 자동 import 규칙 비활성화
+      'no-unused-vars': ['error', { varsIgnorePattern: '^React$' }], // React 변수에 대한 미사용 경고 무시
+      'react/no-unknown-property': ['error', { ignore: ['css'] }],
     },
   },
 ];

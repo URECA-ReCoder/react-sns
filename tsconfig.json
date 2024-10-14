@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Modules */
+    // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    /* Type Checking */
+    "strict": true /* Enable all strict type-checking options. */,
+    /* Completeness */
+    "skipLibCheck": true,
+    "outDir": "./dist/", // path to output directory
+    "sourceMap": true, // allow sourcemap support
+    "strictNullChecks": true, // enable strict null checks as a best practice
+    "module": "es6", // specify module code generation
+    "jsx": "react-jsx", // use typescript to transpile jsx to js
+    "types": ["@emotion/react/types/css-prop"],
+    "target": "es5", // specify ECMAScript target version
+    "allowJs": true, // allow a partial TypeScript and JavaScript codebase
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true, //.ts 확장자를 사용하여 모듈을 불러오기
+    "noEmit": true,
+    "resolveJsonModule": true, // json 파일 경로 찾기, esModuleInterop을 추가해 '* as' 생략
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "lib": ["dom", "es2015"]
+  },
+  "include": ["./src/"]
+}
